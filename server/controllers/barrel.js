@@ -21,7 +21,8 @@ const getBarrels = async (req, res) => {
 const insertBarrel =  async (req, res) => {
 
     try{
-        const body = req.body
+        //const body = req.body
+        const body = matchedData(req)
         const data = await barrelModel.create(body)
         res.send(data)
     }catch(err){
