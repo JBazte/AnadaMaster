@@ -1,0 +1,50 @@
+GET http://localhost:3000/api/employee
+
+###
+GET http://localhost:3000/api/barrel
+
+###
+GET http://localhost:3000/api/grape
+###
+POST http://localhost:3000/api/employee HTTP/1.1
+Content-Type: application/json
+
+{
+    "socialSecurityNumber" : 555501234,
+    "nif" : "91234567Z",
+    "name" : "Emma",
+    "surname" : "García",
+    "DOB" : "1995-07-09",
+    "domicile" : "Calle Rojo nº 45",
+    "address" : "Calle Rojo nº 45",
+    "phoneNumber" : "846761249",
+    "contact" : "846761249",
+    "employeeStatus" : "active",
+    "entryDate" : "2005-03-12",
+    "numOfChildren" : 0,
+    "maritalStatus" : "single",
+    "horoscope" : "Cancer",
+    "admin" : 0
+}
+
+###
+POST http://localhost:3000/api/barrel HTTP/1.1
+Content-Type: application/json
+
+{
+    "origin" : "La Rioja",
+    "cuantity" : 6
+}
+
+###
+POST http://localhost:3000/api/grape HTTP/1.1
+Content-Type: application/json
+
+{
+    "origin" : "La Rioja",
+    "date" : "2020-10-09",
+    "weight" : 0.9,
+    "type" : "morada",
+    "ripeness" : "madura",
+    "cuality" : 4
+}
