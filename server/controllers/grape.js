@@ -21,7 +21,7 @@ const getGrapes = async (req, res) => {
 const insertGrape = async (req, res) => {
 
     try{
-        const body = req.body
+        const body = matchedData(req)
         const data = await grapeModel.create(body)
         res.send(data)
     }catch(err){

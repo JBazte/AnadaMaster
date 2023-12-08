@@ -6,7 +6,7 @@ const validatorCreateEmployee = [
     check("nif").exists().notEmpty().isString(),
     check("name").exists().notEmpty().isString(),
     check("surname" ).exists().notEmpty().isString(),
-    check("DOB").exists().notEmpty().isDate(),
+    check("birthdate").exists().notEmpty().isDate(),
     check("domicile").exists().notEmpty().isString(),
     check("address").exists().notEmpty().isString(),
     check("phoneNumber").exists().notEmpty().isString(),
@@ -17,6 +17,8 @@ const validatorCreateEmployee = [
     check("maritalStatus").exists().notEmpty().isString(),
     check("horoscope").exists().notEmpty().isString(),
     check("admin").exists().notEmpty().isNumeric(),
+    check("email").exists().notEmpty().isEmail(),
+    check("password").exists().notEmpty().isString(),
     (req, res, next) => validateResults (req, res, next) //next es al que le vamos a pasar el procesamiento, al controller se lo pasamos
 ]
 
@@ -26,4 +28,10 @@ const validatorGetEmployee = [
     }
 ]
 
-module.exports = { validatorCreateEmployee, validatorGetEmployee}
+const validatorLoginEmployee = [
+    check("email").exists().notEmpty().isEmail(),
+    check("password").exists().notEmpty().isString().isLength( {min:5, max: 16} ),
+    (req, res, next) => validateResults (req, res, next) //next es al que le vamos a pasar el procesamiento, al controller se lo pasamos
+]
+
+module.exports = { validatorCreateEmployee, validatorGetEmployee, validatorLoginEmployee}
