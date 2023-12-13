@@ -3,9 +3,6 @@ const mongoose = require("mongoose")
 const BarrelScheme = new mongoose.Schema(
 
     {
-        ID_barrel:{
-            type: Number
-        },
         origin:{
             type: String
         },

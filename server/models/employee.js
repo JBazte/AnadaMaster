@@ -3,9 +3,6 @@ const mongoose = require("mongoose")
 const EmployeeScheme = new mongoose.Schema(
 
     { 
-        ID_employee:{
-            type: Number
-        },
         socialSecurityNumber:{
             type: Number
         },

@@ -2,7 +2,8 @@ GET http://localhost:3001/api/employee
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDIwNDc0MDMsImV4cCI6MTczMzU4MzQwM30.MEZZOq4UcyZFuRjga_kazb3jZx1oGwzi5TJVFrDwpMw
 ###
 GET http://localhost:3001/api/barrel
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDIwNDc0MDMsImV4cCI6MTczMzU4MzQwM30.MEZZOq4UcyZFuRjga_kazb3jZx1oGwzi5TJVFrDwpMw
+Authorization: Beare
+r eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDIwNDc0MDMsImV4cCI6MTczMzU4MzQwM30.MEZZOq4UcyZFuRjga_kazb3jZx1oGwzi5TJVFrDwpMw
 ###
 GET http://localhost:3001/api/grape
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDIwNDc0MDMsImV4cCI6MTczMzU4MzQwM30.MEZZOq4UcyZFuRjga_kazb3jZx1oGwzi5TJVFrDwpMw
@@ -10,6 +11,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0N
 POST http://localhost:3001/api/employee HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDIwNDc0MDMsImV4cCI6MTczMzU4MzQwM30.MEZZOq4UcyZFuRjga_kazb3jZx1oGwzi5TJVFrDwpMw
+
 {
     "socialSecurityNumber" : 555501234,
     "nif" : "91234567Z",
@@ -31,9 +33,35 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0N
 }
 
 ###
+PUT http://localhost:3001/api/employee/65732af86ef68d9e8a52ae35 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDI0OTQ4NTAsImV4cCI6MTczNDAzMDg1MH0.55mwUPcrvHILY7wzEaPluCkS_tgbP33bXVFN_JuQVL0
+
+{
+    "socialSecurityNumber" : 555501234,
+    "nif" : "91234567Z",
+    "name" : "Emma",
+    "surname" : "García",
+    "birthdate" : "1995-07-09",
+    "domicile" : "Calle Rojo nº 45",
+    "address" : "Calle Rojo nº 45",
+    "phoneNumber" : "846761249",
+    "contact" : "846761249",
+    "employeeStatus" : "active",
+    "entryDate" : "2005-03-12",
+    "numOfChildren" : 3,
+    "maritalStatus" : "single",
+    "horoscope" : "Cancer",
+    "admin" : 0,
+    "email" : "emma.garcia@gmail.com",
+    "password" : "holiwis1234"
+}
+
+###
 POST http://localhost:3001/api/employee HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDIwNDc0MDMsImV4cCI6MTczMzU4MzQwM30.MEZZOq4UcyZFuRjga_kazb3jZx1oGwzi5TJVFrDwpMw
+
 {
     "socialSecurityNumber" : 555501234,
     "nif" : "01234568Z",
@@ -84,3 +112,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0N
     "ripeness" : "madura",
     "cuality" : 4
 }
+
+###
+DELETE http://localhost:3001/api/employee/65732af86ef68d9e8a52ae35 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDI0OTYwOTUsImV4cCI6MTczNDAzMjA5NX0.S_TpJ1am_ijt_eiYFmRihoYwchbX4NbEeyUxfOiLS7w
