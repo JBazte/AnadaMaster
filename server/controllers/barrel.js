@@ -32,4 +32,35 @@ const insertBarrel =  async (req, res) => {
 
 }
 
-module.exports = { getBarrels, insertBarrel }
+const updateBarrel = async (req, res) => {
+
+    try{
+        const id = req.params.id
+        const body = matchedData(req)
+
+        const data = await barrelModel.updateOne({ _id: id } , body)
+
+        res.send(data)
+        
+    }catch(err){
+        console.log(err)
+        handleHttpError(res, 'ERROR_UPDATE_BARREL')
+    }
+}
+
+const deleteBarrel = async (req, res) => {
+
+    try{
+        const id = req.params.id
+        const data = await barrelModel.deleteOne({_id : id})
+
+        res.send(data)
+        
+    }catch(err){
+        console.log(err)
+        handleHttpError(res, 'ERROR_DELETE_BARREL')
+    }
+}
+
+
+module.exports = { getBarrels, insertBarrel, updateBarrel, deleteBarrel }
