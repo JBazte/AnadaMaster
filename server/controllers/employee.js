@@ -16,7 +16,8 @@ const getEmployees = async (req, res) => {
         let employees = []
 
         for(var i=0; i< data.length; i++){
-           var employeeAux = { socialSecurityNumber : data[i].socialSecurityNumber,
+           var employeeAux = { _id : data[i]._id,
+                            socialSecurityNumber : data[i].socialSecurityNumber,
                             nif : data[i].nif,
                             name :   data[i].name, 
                             surname :   data[i].surname,
@@ -58,6 +59,36 @@ const insertEmployee = async (req, res) => {
     }catch(err){
         console.log(err)
         handleHttpError(res, "ERROR_CREATE_EMPLOYEE")
+    }
+}
+
+const updateEmployee = async (req, res) => {
+
+    try{
+        const id = req.params.id
+        const body = matchedData(req)
+
+        const data = await employeeModel.updateOne({ _id: id } , body)
+
+        res.send(data)
+        
+    }catch(err){
+        console.log(err)
+        handleHttpError(res, 'ERROR_UPDATE_EMPLOYEE')
+    }
+}
+
+const deleteEmployee = async (req, res) => {
+
+    try{
+        const id = req.params.id
+        const data = await employeeModel.deleteOne({_id : id})
+
+        res.send(data)
+        
+    }catch(err){
+        console.log(err)
+        handleHttpError(res, 'ERROR_DELETE_EMPLOYEE')
     }
 }
 
@@ -112,4 +143,4 @@ const loginEmployee = async (req, res) => {
     }
 }
 
-module.exports = { getEmployees, insertEmployee, registerEmployee, loginEmployee }
+module.exports = { getEmployees, insertEmployee, updateEmployee, deleteEmployee, registerEmployee, loginEmployee }

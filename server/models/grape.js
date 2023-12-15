@@ -3,9 +3,6 @@ const mongoose = require("mongoose")
 const GrapeScheme = new mongoose.Schema(
 
     {
-        ID_grape:{
-            type: Number
-        },
         origin:{
             type: String
         },
