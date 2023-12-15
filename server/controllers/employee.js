@@ -81,9 +81,8 @@ const updateEmployee = async (req, res) => {
 const deleteEmployee = async (req, res) => {
 
     try{
-        const id = matchedData(req)
-
-        const data = await employeeModel.deleteOne(id)
+        const id = req.params.id
+        const data = await employeeModel.deleteOne({_id : id})
 
         res.send(data)
         
