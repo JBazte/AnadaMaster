@@ -6,6 +6,7 @@ import Business from './pages/Business';
 import RawMaterialGrape from './pages/RawMaterialGrape';
 import RawMaterialBarrel from './pages/RawMaterialBarrel';
 import Employee from './pages/Employee';
+import Selection from './pages/Selection';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Login />} />
+        <Route exact path="/selection" element={<Selection />} />
         <Route exact path="/clients" element={<Clients />} />
         <Route exact path="/business" element={<Business />} />
         <Route exact path="/rawmaterial/grape" element={<RawMaterialGrape />} />

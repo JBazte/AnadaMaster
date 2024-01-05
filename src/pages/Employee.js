@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Card } from 'react-bootstrap';
 import Footer from '../components/Footer';
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar';
 
 
 function Employee() {
@@ -21,7 +21,8 @@ function Employee() {
                                                 <div className='flex-column col-sm-4 p-2'>
                                                     <Form.Group controlId="formName">
                                                         <Form.Label className='fw-bold text-dark h6'>Nombre</Form.Label>
-                                                        <Form.Control type="text" required />
+                                                        <Form.Control type="text" required defaultValue={""} />
+                                                        {/*<Form.Control plaintext readOnly defaultValue="email@example.com" />*/}
                                                     </Form.Group>
                                                 </div>
                                                 <div className='flex-column col-sm-8 p-2'>
