@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const ProductOrderScheme = new mongoose.Schema(
     {
         idClient:{
-            type: Number
+            type: String
         },
         basket:{
             type: Map,

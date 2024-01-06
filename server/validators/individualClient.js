@@ -1,5 +1,7 @@
 const { check } = require("express-validator")
 const validateResults = require("../utils/handleValidator.js")
+const { handleHttpError } = require("../utils/handleHttpError")
+const { individualClientModel } = require("../models/index.js")
 
 const validatorCreateIndiviualClient = [
     check("name").exists().notEmpty().isString(),
@@ -25,4 +27,17 @@ const validatorModifyIndiviualClient = [
     (req, res, next) => validateResults (req, res, next) //next es al que le vamos a pasar el procesamiento, al controller se lo pasamos
 ]
 
-module.exports = { validatorCreateIndiviualClient, validatorGetIndiviualClient, validatorModifyIndiviualClient}
+const checkUniquesIndividualClient = async (req, res, next) => {
+    
+    const client = await individualClientModel.findOne({ NIF: req.body.NIF })
+
+    if(client != null && client.id != req.id)
+    {
+        handleHttpError(res, "NIF_ALREADY_IN_USE")
+        return
+    }
+    
+    next()
+}
+
+module.exports = { validatorCreateIndiviualClient, validatorGetIndiviualClient, validatorModifyIndiviualClient, checkUniquesIndividualClient}

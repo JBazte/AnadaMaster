@@ -1,5 +1,7 @@
 const { check } = require("express-validator")
 const validateResults = require("../utils/handleValidator.js")
+const { handleHttpError } = require("../utils/handleHttpError")
+const { businessModel } = require("../models/index.js")
 
 const validatorCreateBusiness = [
     check("name").exists().notEmpty().isString(),
@@ -29,4 +31,25 @@ const validatorModifyBusiness = [
     (req, res, next) => validateResults (req, res, next) //next es al que le vamos a pasar el procesamiento, al controller se lo pasamos
 ]
 
-module.exports = { validatorCreateBusiness, validatorGetBusiness, validatorModifyBusiness}
+const checkUniquesBusiness = async (req, res, next) => {
+    
+    const business = await businessModel.findOne({ NIF: req.body.NIF })
+
+    if(business != null && business.id != req.id)
+    {
+        handleHttpError(res, "NIF_ALREADY_IN_USE")
+        return
+    }
+
+    const business2 = await businessModel.findOne({ CIF: req.body.CIF })
+    
+    if(business2 != null && business2.id != req.id)
+    {
+        handleHttpError(res, "CIF_ALREADY_IN_USE")
+        return
+    }
+    
+    next()
+}
+
+module.exports = { validatorCreateBusiness, validatorGetBusiness, validatorModifyBusiness, checkUniquesBusiness}

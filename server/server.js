@@ -19,10 +19,7 @@ app.listen(port, ()=>{
     
     const db_uri = process.env.DB_URI
     mongoose.set('strictQuery', false)
-    mongoose.connect(db_uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }).then(()=>{
+    mongoose.connect(db_uri).then(()=>{
         console.log("Conectando a la BD...")
     }).catch((err)=>{
         console.log("Se ha detectado un error: "+ err)
