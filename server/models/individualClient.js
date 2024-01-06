@@ -15,7 +15,8 @@ const IndividualClientSchema = new mongoose.Schema(
             type: String
         },
         NIF:{
-            type: String
+            type: String,
+            unique: true
         }
     },
     {
