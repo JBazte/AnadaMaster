@@ -2,6 +2,10 @@ const mongoose = require("mongoose")
 
 const ProductScheme = new mongoose.Schema(
     {
+        name:{
+            type: String,
+            unique: true
+        },
         priceInEuro:{
             type: Number
         },

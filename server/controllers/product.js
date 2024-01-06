@@ -35,7 +35,12 @@ const createProduct =  async (req, res) => {
     try{
         //const body = req.body
         const body = matchedData(req)
-        const data = await productModel.create(body)
+        const priceInDollars = body.priceInEuro * 1.1
+
+        const data = await productModel.create({
+            ...body,
+            priceInDollar: priceInDollars
+        });
         res.send(data)
     }
     catch(err){
@@ -47,8 +52,12 @@ const createProduct =  async (req, res) => {
 const updateProduct = async (req, res) => {
     try{
         const {id, ...body} = matchedData(req) //Extrae el id y el resto lo asigna a la constante body
-        
-        const data = await productModel.findByIdAndUpdate(id, body)
+        const priceInDollars = body.priceInEuro * 1.1
+
+        const data = await productModel.findByIdAndUpdate(id, {
+            ...body,
+            priceInDollar: priceInDollars
+        });
         const newData = await productModel.findById(id)
         res.send(newData) 
     }
