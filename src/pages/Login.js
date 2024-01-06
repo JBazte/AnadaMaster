@@ -61,7 +61,7 @@ function Login() {
                             <div className="p-5">
                                 <Card className="shadow custom-form">
                                     <Card.Body className="py-3 d-flex flex-column align-items-center">
-                                        <h3 className="mb-4">REGISTRO</h3>
+                                        <h3 className="mb-4">Iniciar Sesión</h3>
                                         <Form className='w-100 px-2' onSubmit={handleLogin}>
                                             <Form.Group controlId="formEmail">
                                                 <Form.Label className='fw-bold text-dark h6'>Correo Electrónico</Form.Label>

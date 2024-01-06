@@ -11,7 +11,7 @@ function Element() {
                     <p className='col-sm-9 m-auto p-0'>Nombre</p>
                 </div>
                 <div className='col-sm-7 row d-flex justify-content-end'>
-                    <Button className="btn btn-primary px-0 col-sm-3">Visualizar</Button>
+                    <Button className="btn btn-secondary px-0 col-sm-3">Visualizar</Button>
                     <Button className="btn btn-primary px-0 mx-1 col-sm-3">Modificar</Button>
                     <Button className="btn btn-danger px-0 col-sm-3">Eliminar</Button>
                 </div>
