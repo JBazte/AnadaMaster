@@ -18,7 +18,7 @@ const ProductScheme = new mongoose.Schema(
         format:{
             type: String
         },
-        harvest:{
+        harvest: {
             type: Date
         },
         quantity:{

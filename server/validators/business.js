@@ -7,7 +7,6 @@ const validatorCreateBusiness = [
     check("name").exists().notEmpty().isString(),
     check("address").exists().notEmpty().isString(),
     check("phoneNumber").exists().notEmpty().isString(),
-    check("NIF").exists().notEmpty().isString(),
     check("CIF").exists().notEmpty().isString(),
     check("shippingAddress").exists().notEmpty().isString(),
     check("volumeDiscount").exists().notEmpty().isNumeric(),
@@ -24,7 +23,6 @@ const validatorModifyBusiness = [
     check("name").exists().notEmpty().isString(),
     check("address").exists().notEmpty().isString(),
     check("phoneNumber").exists().notEmpty().isString(),
-    check("NIF").exists().notEmpty().isString(),
     check("CIF").exists().notEmpty().isString(),
     check("shippingAddress").exists().notEmpty().isString(),
     check("volumeDiscount").exists().notEmpty().isNumeric(),
@@ -32,18 +30,9 @@ const validatorModifyBusiness = [
 ]
 
 const checkUniquesBusiness = async (req, res, next) => {
+    const business = await businessModel.findOne({ CIF: req.body.CIF })
     
-    const business = await businessModel.findOne({ NIF: req.body.NIF })
-
     if(business != null && business.id != req.id)
-    {
-        handleHttpError(res, "NIF_ALREADY_IN_USE")
-        return
-    }
-
-    const business2 = await businessModel.findOne({ CIF: req.body.CIF })
-    
-    if(business2 != null && business2.id != req.id)
     {
         handleHttpError(res, "CIF_ALREADY_IN_USE")
         return

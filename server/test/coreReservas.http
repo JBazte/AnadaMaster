@@ -1,18 +1,18 @@
 GET http://localhost:3001/api/product
 ###
-GET http://localhost:3001/api/product/65984afd707b54accd4585bd
+GET http://localhost:3001/api/product/65997ef674ef1c68d1aad9f6
 ###
 POST http://localhost:3001/api/product
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDIwNDc0MDMsImV4cCI6MTczMzU4MzQwM30.MEZZOq4UcyZFuRjga_kazb3jZx1oGwzi5TJVFrDwpMw
 
 {
-    "name" : "Product11",
-    "priceInEuro" : 50,
-    "description" : "product1 desc",
-    "format" : "Kilograms",
-    "harvest" : "1995-07-09",
-    "quantity" : 1
+    "name" : "Don Simon del Mercadona",
+    "priceInEuro" : 4,
+    "description" : "Vino seleccion",
+    "format" : "Caja",
+    "harvest" : "2023-01-09",
+    "quantity" : 200
 }
 ###
 PUT http://localhost:3001/api/product/65984b12707b54accd4585c5
@@ -42,11 +42,11 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDIwNDc0MDMsImV4cCI6MTczMzU4MzQwM30.MEZZOq4UcyZFuRjga_kazb3jZx1oGwzi5TJVFrDwpMw
 
 {
-    "name" : "Client",
-    "surname" : "Pepe",
-    "address" : "Calle del desencanto 1",
-    "phoneNumber" : "123456789",
-    "NIF" : "NIF1235"
+    "name" : "Elisa",
+    "surname" : "Al-Hassan",
+    "address" : "Calle del desencanto 3",
+    "phoneNumber" : "123454509",
+    "NIF" : "NIF1935"
 }
 ###
 PUT http://localhost:3001/api/individualClient/6598507fe141a628d64c8236
@@ -75,13 +75,12 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDIwNDc0MDMsImV4cCI6MTczMzU4MzQwM30.MEZZOq4UcyZFuRjga_kazb3jZx1oGwzi5TJVFrDwpMw
 
 {
-    "name" : "Business1",
-    "address" : "Calle del desencanto 55",
-    "phoneNumber" : "123456789",
-    "NIF" : "NIF125",
-    "CIF" : "CIF1235",
-    "shippingAddress" : "address 11",
-    "volumeDiscount" : 20
+    "name" : "Paprika",
+    "address" : "Buenos Aires y aledaños",
+    "phoneNumber" : "146334789",
+    "CIF" : "CIF2835",
+    "shippingAddress" : "Buenos Aires 9",
+    "volumeDiscount" : 10
 }
 ###
 PUT http://localhost:3001/api/business/65993671f5eae2c005791f10
@@ -92,7 +91,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0N
     "name" : "Business1",
     "address" : "Calle del desencanto 56",
     "phoneNumber" : "123456789",
-    "NIF" : "NIF1252",
     "CIF" : "CIF1238",
     "shippingAddress" : "address 11",
     "volumeDiscount" : 20
@@ -112,12 +110,12 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDIwNDc0MDMsImV4cCI6MTczMzU4MzQwM30.MEZZOq4UcyZFuRjga_kazb3jZx1oGwzi5TJVFrDwpMw
 
 {
-    "idClient" : "1345",
+    "idClient" : "65997f3574ef1c68d1aad9fe",
     "basket" : {
-        "Product3" : 1,
-        "Product4" : 2
+        "Toro" : 10,
+        "Añejo" : 15
     },
-    "status" : "finished",
+    "status" : "Finalizado",
     "discount" : 10
 }
 ###
@@ -128,8 +126,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0N
 {
     "idClient" : "65985072e141a628d64c8230",
     "basket" : {
-        "Product3" : 1,
-        "Product4" : 2
+        "Toro" : 1,
+        "Añejo" : 2
     },
     "status" : "finished",
     "discount" : 10,

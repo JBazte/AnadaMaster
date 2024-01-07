@@ -11,9 +11,6 @@ const BusinessSchema = new mongoose.Schema(
         phoneNumber:{
             type: String
         },
-        NIF:{
-            type: String
-        },
         CIF:{
             type: String
         },
