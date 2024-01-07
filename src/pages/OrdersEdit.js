@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Form, Card } from 'react-bootstrap';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar'
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 function OrdersEdit() {
     const { id } = useParams();
+    let navigate = useNavigate();
 
     const [discount, setDiscount] = useState();
     const [idClient, setIdClient] = useState();
@@ -51,7 +52,33 @@ function OrdersEdit() {
             console.error('Error:', error);
         }
     };
+    const updateOrderData = async () => {
+        try {
+            const response = await fetch(`http://localhost:3001/api/productOrder/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    discount: discount,
+                    idClient: idClient,
+                    totalPrice: price,
+                    basket: cart,
+                    status: status
+                })
+            });
+            const jsonData = await response.json();
+            console.log(jsonData);
+            navigate(`/order/${id}`)
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
+    const handleConfirmClick = (e) => {
+        e.preventDefault();
+        updateOrderData();
+    };
     return (
         <div className="d-flex flex-column vh-100 overflow-hidden">
             <Navbar />
@@ -111,8 +138,10 @@ function OrdersEdit() {
                                                 </div>
                                             </div>
                                             <div className='text-center justify-content-center'>
-                                                <button type="submit" className="btn btn-danger m-3 w-25">Cancelar</button>
-                                                <button type="submit" className="btn btn-success m-3 w-25">Confirmar</button>
+                                                <Link to={`/corereservas/list`}>
+                                                    <button className="btn btn-danger m-3 w-25">Cancelar</button>
+                                                </Link>
+                                                <button type="submit" className="btn btn-success m-3 w-25" onClick={handleConfirmClick}>Confirmar</button>
                                             </div>
                                         </Form>
                                     </Card.Body>

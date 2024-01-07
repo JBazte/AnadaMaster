@@ -2,17 +2,21 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { Card } from 'react-bootstrap';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import BusinessElement from '../components/BusinessElement';
 import ClientElement from '../components/ClientElement';
 import OrderElement from '../components/OrderElement';
 import ProductElement from '../components/ProductElement';
 
 function SelectionCoreReservas() {
     const [data, setData] = useState(null);
-    const [selectedValue, setSelectedValue] = useState(1);
+    const [selectedValue, setSelectedValue] = useState("0");
 
     const fetchData = useCallback(async () => {
         let apiUrl = "";
         switch (selectedValue) {
+            case "0":
+                apiUrl = "http://localhost:3001/api/business";
+                break;
             case "1":
                 apiUrl = "http://localhost:3001/api/individualClient";
                 break;
@@ -26,7 +30,6 @@ function SelectionCoreReservas() {
                 apiUrl = "http://localhost:3001/api/individualClient";
                 break;
         }
-        console.log(selectedValue);
         try {
             const response = await fetch(apiUrl);
             const jsonData = await response.json();
@@ -55,13 +58,19 @@ function SelectionCoreReservas() {
                                 <Card className="shadow" style={{ maxHeight: "658px" }}>
                                     <Card.Header className='w-100 m-0 p-0 d-flex justify-content-between'>
                                         <select type="submit" value={selectedValue} className="m-3 w-25 form-select" onChange={handleSelectChange}>
-                                            <option value={1}>Clientes</option>
+                                            <option value={0}>Clientes (Empresas)</option>
+                                            <option value={1}>Clientes (Individual)</option>
                                             <option value={2}>Pedidos</option>
                                             <option value={3}>Productos</option>
                                         </select>
                                         <button type="submit" className="btn btn-success m-3 w-25">Añadir nuevo</button>
                                     </Card.Header>
                                     <Card.Body className="p-3 d-flex flex-column align-items-center overflow-auto">
+                                        {data && selectedValue == 0 &&
+                                            data.map((item, index) => (
+                                                <BusinessElement key={index} data={item} />
+                                            ))
+                                        }
                                         {data && selectedValue == 1 &&
                                             data.map((item, index) => (
                                                 <ClientElement key={index} data={item} />

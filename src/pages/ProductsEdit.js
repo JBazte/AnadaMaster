@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Form, Card } from 'react-bootstrap';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar'
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 
 function ProductsEdit() {
     const { id } = useParams();
+    let navigate = useNavigate();
 
     const [name, setName] = useState("");
     const [priceInEuro, setPriceInEuro] = useState("");
@@ -52,13 +53,43 @@ function ProductsEdit() {
             setPriceInEuro(priceInEuro);
             setDescription(description);
             setFormat(format);
-            setHarvest(harvest);
+            setHarvest(harvest.split("-")[0]);
             setQuantity(quantity);
         } catch (error) {
             console.error('Error:', error);
         }
     };
+    const updateProductData = async () => {
+        try {
+            const selectedDate = new Date(harvest);
+            const formattedDate = selectedDate.toISOString();
 
+            const response = await fetch(`http://localhost:3001/api/product/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    priceInEuro: priceInEuro,
+                    description: description,
+                    format: format,
+                    harvest: formattedDate,
+                    quantity: quantity
+                })
+            });
+            const jsonData = await response.json();
+            console.log(jsonData);
+            navigate(`/product/${id}`)
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const handleConfirmClick = (e) => {
+        e.preventDefault();
+        updateProductData();
+    };
     return (
         <div className="d-flex flex-column vh-100 overflow-hidden">
             <Navbar />
@@ -118,8 +149,10 @@ function ProductsEdit() {
                                                 </div>
                                             </div>
                                             <div className='text-center justify-content-center'>
-                                                <button type="submit" className="btn btn-danger m-3 w-25">Cancelar</button>
-                                                <button type="submit" className="btn btn-success m-3 w-25">Confirmar</button>
+                                                <Link to={`/corereservas/list`}>
+                                                    <button className="btn btn-danger m-3 w-25">Cancelar</button>
+                                                </Link>
+                                                <button type="submit" className="btn btn-success m-3 w-25" onClick={handleConfirmClick}>Confirmar</button>
                                             </div>
                                         </Form>
                                     </Card.Body>

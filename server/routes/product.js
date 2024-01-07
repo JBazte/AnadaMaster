@@ -3,9 +3,9 @@ const router = express.Router()
 
 const { getProducts, getProduct, createProduct, updateProduct, deleteProduct } = require("../controllers/product")
 
-const {validatorCreateProduct, validatorGetProduct, validatorModifyProduct, checkUniquesProduct} = require("../validators/product")
-const {authEmployee} = require("../middleware/session")
-const checkRol       = require("../middleware/rol")
+const { validatorCreateProduct, validatorGetProduct, validatorModifyProduct, checkUniquesProduct } = require("../validators/product")
+const { authEmployee } = require("../middleware/session")
+const checkRol = require("../middleware/rol")
 
 //GET ALL PRODUCTS
 router.get("/", getProducts)
@@ -14,12 +14,12 @@ router.get("/", getProducts)
 router.get("/:id", validatorGetProduct, getProduct)
 
 //CREATE ONE PRODUCT
-router.post("/", authEmployee, checkUniquesProduct, validatorCreateProduct, createProduct)
+router.post("/", checkUniquesProduct, validatorCreateProduct, createProduct)
 
 //EDIT ONE PRODUCT
-router.put("/:id", authEmployee, validatorGetProduct, checkUniquesProduct, validatorModifyProduct, updateProduct)
+router.put("/:id", validatorGetProduct, validatorModifyProduct, updateProduct)
 
 //DELETE ONE PRODUCT
-router.delete("/:id", authEmployee, validatorGetProduct, deleteProduct)
+router.delete("/:id", validatorGetProduct, deleteProduct)
 
 module.exports = router

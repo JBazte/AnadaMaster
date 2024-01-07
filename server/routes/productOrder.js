@@ -3,9 +3,9 @@ const router = express.Router()
 
 const { getProductOrders, getProductOrder, createProductOrder, updateProductOrder, deleteProductOrder } = require("../controllers/productOrder")
 
-const {validatorCreateProductOrder, validatorGetProductOrder, validatorModifyProductOrder } = require("../validators/productOrder")
-const {authEmployee} = require("../middleware/session")
-const checkRol       = require("../middleware/rol")
+const { validatorCreateProductOrder, validatorGetProductOrder, validatorModifyProductOrder } = require("../validators/productOrder")
+const { authEmployee } = require("../middleware/session")
+const checkRol = require("../middleware/rol")
 
 //GET ALL PRODUCT ORDERS
 router.get("/", getProductOrders)
@@ -14,12 +14,12 @@ router.get("/", getProductOrders)
 router.get("/:id", validatorGetProductOrder, getProductOrder)
 
 //CREATE ONE PRODUCT ORDER
-router.post("/", authEmployee, validatorCreateProductOrder, createProductOrder)
+router.post("/", validatorCreateProductOrder, createProductOrder)
 
 //EDIT ONE PRODUCT ORDER
-router.put("/:id", authEmployee, validatorGetProductOrder, validatorModifyProductOrder, updateProductOrder)
+router.put("/:id", validatorGetProductOrder, validatorModifyProductOrder, updateProductOrder)
 
 //DELETE ONE PRODUCT ORDER
-router.delete("/:id", authEmployee, validatorGetProductOrder, deleteProductOrder)
+router.delete("/:id", validatorGetProductOrder, deleteProductOrder)
 
 module.exports = router

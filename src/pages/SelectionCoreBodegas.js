@@ -2,11 +2,29 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { Card } from 'react-bootstrap';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-import Element from '../components/ClientElement';
+import EmployeeElement from '../components/EmployeeElement';
+import RawMaterialGrapeElement from '../components/RawMaterialGrapeElement';
+import RawMaterialBarrelElement from '../components/RawMaterialBarrelElement';
 
 function SelectionCoreBodegas() {
     const [data, setData] = useState(null);
     const [selectedValue, setSelectedValue] = useState(1);
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
 
     const fetchData = useCallback(async () => {
         let apiUrl = "";
@@ -25,7 +43,9 @@ function SelectionCoreBodegas() {
                 break;
         }
         try {
-            const response = await fetch(apiUrl);
+            const token = getCookie("user-token");
+            const headers = { 'Authorization': `Bearer ${token}` };
+            const response = await fetch(apiUrl, { headers });
             const jsonData = await response.json();
             setData(jsonData);
         } catch (error) {
@@ -40,6 +60,7 @@ function SelectionCoreBodegas() {
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value);
     };
+
     return (
         <>
             <Navbar />
@@ -58,9 +79,19 @@ function SelectionCoreBodegas() {
                                         <button type="submit" className="btn btn-success m-3 w-25">Añadir nuevo</button>
                                     </Card.Header>
                                     <Card.Body className="p-3 d-flex flex-column align-items-center overflow-auto">
-                                        {data &&
+                                        {data && selectedValue == 1 &&
                                             data.map((item, index) => (
-                                                <Element key={index} data={item} />
+                                                <EmployeeElement key={index} data={item} />
+                                            ))
+                                        }
+                                        {data && selectedValue == 2 &&
+                                            data.map((item, index) => (
+                                                <RawMaterialGrapeElement key={index} data={item} />
+                                            ))
+                                        }
+                                        {data && selectedValue == 3 &&
+                                            data.map((item, index) => (
+                                                <RawMaterialBarrelElement key={index} data={item} />
                                             ))
                                         }
                                     </Card.Body>

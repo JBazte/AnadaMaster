@@ -13,14 +13,14 @@ router.get("/:id", authMiddleware.authEmployee, checkRol([1]), validatorGetEmplo
 
 //router.post("/",validatorCreateEmployee ,insertEmployee)
 //Insert/register employees
-router.post("/", authMiddleware.authEmployee,  checkRol([1]), validatorCreateEmployee ,registerEmployee)
+router.post("/", authMiddleware.authEmployee, checkRol([1]), validatorCreateEmployee, registerEmployee)
 
 //Modify employee by id
-//router.put("/:id", authMiddleware.authEmployee,  checkRol([1]), updateEmployee)
-router.patch("/:id", authMiddleware.authEmployee,  checkRol([1]), updateEmployee)
+router.put("/:id", authMiddleware.authEmployee, checkRol([1]), updateEmployee)
+//router.patch("/:id", authMiddleware.authEmployee,  checkRol([1]), updateEmployee)
 
 //Delete employee by id
-router.delete("/:id", authMiddleware.authEmployee,  checkRol([1]), validatorGetEmployee, deleteEmployee )
+router.delete("/:id", authMiddleware.authEmployee, checkRol([1]), validatorGetEmployee, deleteEmployee)
 
 //Main Login
 router.post("/login/", validatorLoginEmployee, loginEmployee)

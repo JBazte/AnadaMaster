@@ -2,31 +2,31 @@ const mongoose = require("mongoose")
 
 const ProductScheme = new mongoose.Schema(
     {
-        name:{
+        name: {
             type: String,
             unique: true
         },
-        priceInEuro:{
+        priceInEuro: {
             type: Number
         },
-        priceInDollar:{
+        priceInDollar: {
             type: Number
         },
-        description:{
+        description: {
             type: String
         },
-        format:{
+        format: {
             type: String
         },
         harvest: {
             type: Date
         },
-        quantity:{
+        quantity: {
             type: Number
         }
     },
     {
-        timestamp: true, 
+        timestamp: true,
         versionKey: false
     }
 )

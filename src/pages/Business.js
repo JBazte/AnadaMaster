@@ -1,44 +1,58 @@
-import React, { useState } from 'react';
-import { Form, Card } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Form, Card, Button } from 'react-bootstrap';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar'
-
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 function Business() {
-    const [isVisualizationOn, setIsVisualizationOn] = useState(false);
-    const [name, setName] = useState("Zetta Studios");
-    const [phone, setPhone] = useState("+1 (555) 123-4567");
-    const [address, setAddress] = useState("1234 Elm Street, Springfield");
-    const [billingAddress, setBillingAddress] = useState("1234 Elm Street, Springfield");
-    const [cif, setCif] = useState("12345678Z");
-    const [discount, setDiscount] = useState(10);
+    const { id } = useParams();
+    let navigate = useNavigate();
 
-    const toggleVisualization = () => {
-        setIsVisualizationOn(!isVisualizationOn);
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address, setAddress] = useState("");
+    const [billingAddress, setBillingAddress] = useState("");
+    const [cif, setCif] = useState("");
+    const [discount, setDiscount] = useState();
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch(`http://localhost:3001/api/business/${id}`);
+            const jsonData = await response.json();
+            const { name, phoneNumber, address, shippingAddress, CIF, volumeDiscount } = jsonData;
+            setName(name);
+            setPhone(phoneNumber);
+            setAddress(address);
+            setBillingAddress(shippingAddress);
+            setCif(CIF);
+            setDiscount(volumeDiscount);
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
-    const handleNameChange = (e) => {
-        setName(e.target.value);
-    };
+    const handleDelete = async (event) => {
+        event.preventDefault();
 
-    const handleAddressChange = (e) => {
-        setAddress(e.target.value);
-    };
+        try {
+            const response = await fetch(`http://localhost:3001/api/business/${id}`, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' }
+            });
 
-    const handleBillingAddressChange = (e) => {
-        setBillingAddress(e.target.value);
-    };
-
-    const handlePhoneChange = (e) => {
-        setPhone(e.target.value);
-    };
-
-    const handleCifChange = (e) => {
-        setCif(e.target.value);
-    };
-
-    const handleDiscountChange = (e) => {
-        setDiscount(e.target.value);
+            if (response.ok) {
+                console.log('Element deleted successfully');
+                navigate("/corereservas/list");
+            } else {
+                console.error('Failed to delete element');
+            }
+        } catch (error) {
+            console.error('Error deleting element:', error);
+        }
     };
 
     return (
@@ -57,22 +71,16 @@ function Business() {
                                                 <div className='flex-column col-sm-7 p-2'>
                                                     <Form.Group controlId="formName">
                                                         <Form.Label className='fw-bold text-dark h6'>Nombre</Form.Label>
-                                                        <div className={`d-flex flex-row ${!isVisualizationOn ? '' : 'd-none'}`}>
-                                                            <Form.Control type="text" required defaultValue={""} onChange={handleNameChange} />
-                                                        </div>
-                                                        <div className={`d-flex flex-row ${isVisualizationOn ? '' : 'd-none'}`}>
-                                                            <Form.Control type="text" readOnly defaultValue={name} disabled={isVisualizationOn} />
+                                                        <div className={`d-flex flex-row `}>
+                                                            <Form.Control type="text" readOnly defaultValue={name} disabled />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
                                                 <div className='flex-column col-sm-5 p-2'>
                                                     <Form.Group controlId="formPhone">
                                                         <Form.Label className='fw-bold text-dark h6'>Teléfono</Form.Label>
-                                                        <div className={`d-flex flex-row ${!isVisualizationOn ? '' : 'd-none'}`}>
-                                                            <Form.Control type="text" required defaultValue={""} onChange={handlePhoneChange} />
-                                                        </div>
-                                                        <div className={`d-flex flex-row ${isVisualizationOn ? '' : 'd-none'}`}>
-                                                            <Form.Control type="text" readOnly defaultValue={phone} disabled={isVisualizationOn} />
+                                                        <div className={`d-flex flex-row`}>
+                                                            <Form.Control type="text" readOnly defaultValue={phone} disabled />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
@@ -81,22 +89,16 @@ function Business() {
                                                 <div className='flex-column col-sm-8 p-2'>
                                                     <Form.Group controlId="formAddress">
                                                         <Form.Label className='fw-bold text-dark h6'>Dirección</Form.Label>
-                                                        <div className={`d-flex flex-row ${!isVisualizationOn ? '' : 'd-none'}`}>
-                                                            <Form.Control type="text" required defaultValue={""} onChange={handleAddressChange} />
-                                                        </div>
-                                                        <div className={`d-flex flex-row ${isVisualizationOn ? '' : 'd-none'}`}>
-                                                            <Form.Control type="text" readOnly defaultValue={address} disabled={isVisualizationOn} />
+                                                        <div className={`d-flex flex-row `}>
+                                                            <Form.Control type="text" readOnly defaultValue={address} disabled />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
                                                 <div className='flex-column col-sm-4 p-2'>
                                                     <Form.Group controlId="formCIF">
                                                         <Form.Label className='fw-bold text-dark h6'>CIF</Form.Label>
-                                                        <div className={`d-flex flex-row ${!isVisualizationOn ? '' : 'd-none'}`}>
-                                                            <Form.Control type="text" required defaultValue={""} onChange={handleCifChange} />
-                                                        </div>
-                                                        <div className={`d-flex flex-row ${isVisualizationOn ? '' : 'd-none'}`}>
-                                                            <Form.Control type="text" readOnly defaultValue={cif} disabled={isVisualizationOn} />
+                                                        <div className={`d-flex flex-row`}>
+                                                            <Form.Control type="text" readOnly defaultValue={cif} disabled />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
@@ -105,47 +107,31 @@ function Business() {
                                                 <div className='flex-column col-sm-9 p-2'>
                                                     <Form.Group controlId="formPaymentAddress">
                                                         <Form.Label className='fw-bold text-dark h6'>Dirección Facturacion</Form.Label>
-                                                        <div className={`d-flex flex-row ${!isVisualizationOn ? '' : 'd-none'}`}>
-                                                            <Form.Control type="text" required defaultValue={""} onChange={handleBillingAddressChange} />
-                                                        </div>
-                                                        <div className={`d-flex flex-row ${isVisualizationOn ? '' : 'd-none'}`}>
-                                                            <Form.Control type="text" readOnly defaultValue={billingAddress} disabled={isVisualizationOn} />
+                                                        <div className={`d-flex flex-row`}>
+                                                            <Form.Control type="text" readOnly defaultValue={billingAddress} disabled />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
                                                 <div className='flex-column col-sm-3 p-2'>
                                                     <Form.Group controlId="formDiscount">
                                                         <Form.Label className='fw-bold text-dark h6'>Descuento (%)</Form.Label>
-                                                        <div className={`d-flex flex-row ${!isVisualizationOn ? '' : 'd-none'}`}>
-                                                            <Form.Control
-                                                                type="number"
-                                                                min="0"
-                                                                max="100"
-                                                                onChange={handleDiscountChange} required
-                                                            />
-                                                        </div>
-                                                        <div className={`d-flex flex-row ${isVisualizationOn ? '' : 'd-none'}`}>
+                                                        <div className={`d-flex flex-row`}>
                                                             <Form.Control
                                                                 type="number"
                                                                 min="0"
                                                                 max="100"
                                                                 value={discount}
-                                                                disabled={isVisualizationOn}
+                                                                disabled
                                                             />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
                                             </div>
                                             <div className='text-center justify-content-center'>
-                                                <button
-                                                    type="button"
-                                                    className="btn btn-secondary w-25 m-3"
-                                                    onClick={toggleVisualization}
-                                                >
-                                                    {isVisualizationOn ? 'Editar' : 'Visualizar'}
-                                                </button>
-                                                <button type="submit" className="btn btn-danger m-3 w-25">Cancelar</button>
-                                                <button type="submit" className="btn btn-success m-3 w-25">Confirmar</button>
+                                                <button className="btn btn-danger m-3 w-25" onClick={(event) => handleDelete(event)}>Eliminar</button>
+                                                <Link to={`/business/${id}/edit`}>
+                                                    <Button className="btn btn-primary m-3 w-25">Modificar</Button>
+                                                </Link>
                                             </div>
                                         </Form>
                                     </Card.Body>

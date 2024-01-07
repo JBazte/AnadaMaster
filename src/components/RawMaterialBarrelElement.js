@@ -2,15 +2,32 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function OrderElement({ data }) {
-    const { _id, name, status } = data;
-    const displayText = name !== undefined ? name : status;
+function RawMaterialBarrelElement({ data }) {
+    const { _id, barrelOrigin } = data;
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/productOrder/${_id}`, {
+            const token = getCookie("user-token");
+            const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` };
+            const response = await fetch(`http://localhost:3001/api/barrel/${_id}`, {
                 method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' }
+                headers: headers
             });
 
             if (response.ok) {
@@ -29,13 +46,13 @@ function OrderElement({ data }) {
             <div className='m-2 p-2 w-100 border border-1 rounded d-flex justify-content-between row'>
                 <div className='col-sm-5 row'>
                     <p className='col-sm-9 m-auto pl-1'>{_id}</p>
-                    <p className='col-sm-3 m-auto p-0'>{displayText}</p>
+                    <p className='col-sm-3 m-auto p-0'>{barrelOrigin}</p>
                 </div>
                 <div className='col-sm-7 row d-flex justify-content-end'>
-                    <Link to={`/order/${_id}`} className="px-0 col-sm-3">
+                    <Link to={`/rawmaterial/barrel/${_id}`} className="px-0 col-sm-3">
                         <Button className="btn btn-secondary w-100">Visualizar</Button>
                     </Link>
-                    <Link to={`/order/${_id}/edit`} className="px-0 mx-1 col-sm-3">
+                    <Link to={`/rawmaterial/barrel/${_id}/edit`} className="px-0 mx-1 col-sm-3">
                         <Button className="btn btn-primary w-100">Modificar</Button>
                     </Link>
                     <Link to="#" className="px-0 col-sm-3">
@@ -47,4 +64,4 @@ function OrderElement({ data }) {
     )
 }
 
-export default OrderElement;
+export default RawMaterialBarrelElement;

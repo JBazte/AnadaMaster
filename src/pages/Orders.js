@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Card } from 'react-bootstrap';
+import { Form, Card, Button } from 'react-bootstrap';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 
 function Orders() {
     const { id } = useParams();
+    let navigate = useNavigate();
 
     const [discount, setDiscount] = useState();
     const [idClient, setIdClient] = useState("");
@@ -31,6 +32,44 @@ function Orders() {
         } catch (error) {
             console.error('Error:', error);
         }
+    };
+
+    const handleDelete = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await fetch(`http://localhost:3001/api/productOrder/${id}`, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            if (response.ok) {
+                console.log('Element deleted successfully');
+                navigate("/corereservas/list");
+            } else {
+                console.error('Failed to delete element');
+            }
+        } catch (error) {
+            console.error('Error deleting element:', error);
+        }
+    };
+
+    const handlePrintFactura = () => {
+        const screenshot = document.documentElement.cloneNode(true);
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`
+            <html>
+                <head>
+                    <title>Factura</title>
+                </head>
+                <body>
+                    ${screenshot.outerHTML}
+                </body>
+            </html>
+        `);
+        printWindow.document.body.appendChild(screenshot);
+
+        printWindow.print();
     };
 
     return (
@@ -91,8 +130,11 @@ function Orders() {
                                                 </div>
                                             </div>
                                             <div className='text-center justify-content-center'>
-                                                <button type="submit" className="btn btn-danger m-3 w-25">Cancelar</button>
-                                                <button type="submit" className="btn btn-success m-3 w-25">Confirmar</button>
+                                                <button className="btn btn-secondary m-3 w-25" onClick={handlePrintFactura}>Imprimir Factura</button>
+                                                <button className="btn btn-danger m-3 w-25" onClick={(event) => handleDelete(event)}>Eliminar</button>
+                                                <Link to={`/order/${id}/edit`}>
+                                                    <Button className="btn btn-primary m-3 w-25">Modificar</Button>
+                                                </Link>
                                             </div>
                                         </Form>
                                     </Card.Body>
@@ -101,11 +143,11 @@ function Orders() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
             <footer className='sticky-bottom'>
                 <Footer />
             </footer>
-        </div>
+        </div >
     );
 };
 

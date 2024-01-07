@@ -2,13 +2,13 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function OrderElement({ data }) {
+function BusinessElement({ data }) {
     const { _id, name, status } = data;
     const displayText = name !== undefined ? name : status;
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/productOrder/${_id}`, {
+            const response = await fetch(`http://localhost:3001/api/business/${_id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -32,10 +32,10 @@ function OrderElement({ data }) {
                     <p className='col-sm-3 m-auto p-0'>{displayText}</p>
                 </div>
                 <div className='col-sm-7 row d-flex justify-content-end'>
-                    <Link to={`/order/${_id}`} className="px-0 col-sm-3">
+                    <Link to={`/business/${_id}`} className="px-0 col-sm-3">
                         <Button className="btn btn-secondary w-100">Visualizar</Button>
                     </Link>
-                    <Link to={`/order/${_id}/edit`} className="px-0 mx-1 col-sm-3">
+                    <Link to={`/business/${_id}/edit`} className="px-0 mx-1 col-sm-3">
                         <Button className="btn btn-primary w-100">Modificar</Button>
                     </Link>
                     <Link to="#" className="px-0 col-sm-3">
@@ -47,4 +47,4 @@ function OrderElement({ data }) {
     )
 }
 
-export default OrderElement;
+export default BusinessElement;

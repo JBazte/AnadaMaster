@@ -2,15 +2,33 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function OrderElement({ data }) {
+function EmployeeElement({ data }) {
     const { _id, name, status } = data;
     const displayText = name !== undefined ? name : status;
 
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
     const handleDelete = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/productOrder/${_id}`, {
+            const token = getCookie("user-token");
+            const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` };
+            const response = await fetch(`http://localhost:3001/api/employee/${_id}`, {
                 method: 'DELETE',
-                headers: { 'Content-Type': 'application/json' }
+                headers: headers
             });
 
             if (response.ok) {
@@ -32,10 +50,10 @@ function OrderElement({ data }) {
                     <p className='col-sm-3 m-auto p-0'>{displayText}</p>
                 </div>
                 <div className='col-sm-7 row d-flex justify-content-end'>
-                    <Link to={`/order/${_id}`} className="px-0 col-sm-3">
+                    <Link to={`/employee/${_id}`} className="px-0 col-sm-3">
                         <Button className="btn btn-secondary w-100">Visualizar</Button>
                     </Link>
-                    <Link to={`/order/${_id}/edit`} className="px-0 mx-1 col-sm-3">
+                    <Link to={`/employee/${_id}/edit`} className="px-0 mx-1 col-sm-3">
                         <Button className="btn btn-primary w-100">Modificar</Button>
                     </Link>
                     <Link to="#" className="px-0 col-sm-3">
@@ -47,4 +65,4 @@ function OrderElement({ data }) {
     )
 }
 
-export default OrderElement;
+export default EmployeeElement;

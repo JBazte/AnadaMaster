@@ -5,6 +5,25 @@ import { Link } from 'react-router-dom';
 function ProductElement({ data }) {
     const { _id, name, status } = data;
     const displayText = name !== undefined ? name : status;
+
+    const handleDelete = async () => {
+        try {
+            const response = await fetch(`http://localhost:3001/api/product/${_id}`, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            if (response.ok) {
+                console.log('Element deleted successfully');
+                window.location.reload(false);
+            } else {
+                console.error('Failed to delete element');
+            }
+        } catch (error) {
+            console.error('Error deleting element:', error);
+        }
+    };
+
     return (
         <>
             <div className='m-2 p-2 w-100 border border-1 rounded d-flex justify-content-between row'>
@@ -20,7 +39,7 @@ function ProductElement({ data }) {
                         <Button className="btn btn-primary w-100">Modificar</Button>
                     </Link>
                     <Link to="#" className="px-0 col-sm-3">
-                        <Button className="btn btn-danger w-100">Eliminar</Button>
+                        <Button className="btn btn-danger w-100" onClick={handleDelete}>Eliminar</Button>
                     </Link>
                 </div>
             </div>

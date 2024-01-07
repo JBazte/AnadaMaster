@@ -15,6 +15,15 @@ function Navbar() {
         if (parts.length >= 3 && parts[1] === 'product') {
             return '/product';
         }
+        if (parts.length >= 3 && parts[1] === 'rawmaterial') {
+            return '/rawmaterial';
+        }
+        if (parts.length >= 3 && parts[1] === 'employee') {
+            return '/employee';
+        }
+        if (parts.length >= 3 && parts[1] === 'business') {
+            return '/business';
+        }
         return path;
     };
 
@@ -30,10 +39,10 @@ function Navbar() {
                 <div className="navbar-collapse collapse w-100 mx-5 justify-content-end" id="collapsingNavbar3">
                     <ul className="nav nav-pills navbar-nav">
                         <li className="nav-item mx-3 my-auto">
-                            <Link to="/corereservas/list" className={`nav-link rounded-pill py-0 px-3 ${getPath(location.pathname) === '/client' || location.pathname === '/business' || getPath(location.pathname) === '/order' || getPath(location.pathname) === '/product' || location.pathname === '/corereservas/list' ? 'active' : ''}`} >CoreReservas</Link>
+                            <Link to="/corereservas/list" className={`nav-link rounded-pill py-0 px-3 ${getPath(location.pathname) === '/client' || getPath(location.pathname) === '/business' || getPath(location.pathname) === '/order' || getPath(location.pathname) === '/product' || location.pathname === '/corereservas/list' ? 'active' : ''}`} >CoreReservas</Link>
                         </li>
                         <li className="nav-item mx-3 my-auto">
-                            <Link to="/corebodega/list" className={`nav-link rounded-pill py-0 px-3 ${location.pathname === '/rawmaterial/grape' || location.pathname === '/rawmaterial/barrel' || location.pathname === '/employee' || location.pathname === '/corebodega/list' ? 'active' : ''}`}>CoreBodega</Link>
+                            <Link to="/corebodega/list" className={`nav-link rounded-pill py-0 px-3 ${getPath(location.pathname) === '/rawmaterial' || getPath(location.pathname) === '/rawmaterial' || getPath(location.pathname) === '/employee' || location.pathname === '/corebodega/list' ? 'active' : ''}`}>CoreBodega</Link>
                         </li>
                     </ul>
                 </div>

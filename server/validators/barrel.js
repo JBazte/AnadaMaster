@@ -2,10 +2,10 @@ const { check } = require("express-validator")
 const validateResults = require("../utils/handleValidator.js")
 
 const validatorCreateBarrel = [
-    check("barrelOrigin").exists().notEmpty().isString(), 
-    check("cuantity").exists().notEmpty().isNumeric(),
+    check("barrelOrigin").exists().notEmpty().isString(),
+    check("quantity").exists().notEmpty().isNumeric(),
 
-    (req, res, next) => validateResults (req, res, next) //next es al que le vamos a pasar el procesamiento, al controller se lo pasamos
+    (req, res, next) => validateResults(req, res, next) //next es al que le vamos a pasar el procesamiento, al controller se lo pasamos
 ]
 
 const validatorGetBarrel = [
@@ -14,4 +14,4 @@ const validatorGetBarrel = [
     }
 ]
 
-module.exports = { validatorCreateBarrel, validatorGetBarrel}
+module.exports = { validatorCreateBarrel, validatorGetBarrel }

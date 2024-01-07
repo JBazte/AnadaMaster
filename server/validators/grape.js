@@ -2,14 +2,14 @@ const { check } = require("express-validator")
 const validateResults = require("../utils/handleValidator.js")
 
 const validatorCreateGrape = [
-    check("grapeOrigin").exists().notEmpty().isString(), 
+    check("grapeOrigin").exists().notEmpty().isString(),
     check("date").exists().notEmpty().isDate(),
     check("weight").exists().notEmpty().isNumeric(),
-    check("type" ).exists().notEmpty().isString(),
+    check("type").exists().notEmpty().isString(),
     check("ripeness").exists().notEmpty().isString(),
-    check("cuality").exists().notEmpty().isNumeric(),
+    check("quality").exists().notEmpty().isNumeric(),
 
-    (req, res, next) => validateResults (req, res, next) //next es al que le vamos a pasar el procesamiento, al controller se lo pasamos
+    (req, res, next) => validateResults(req, res, next) //next es al que le vamos a pasar el procesamiento, al controller se lo pasamos
 ]
 
 const validatorGetGrape = [
@@ -18,4 +18,4 @@ const validatorGetGrape = [
     }
 ]
 
-module.exports = { validatorCreateGrape, validatorGetGrape}
+module.exports = { validatorCreateGrape, validatorGetGrape }

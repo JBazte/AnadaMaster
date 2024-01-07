@@ -3,9 +3,9 @@ const router = express.Router()
 
 const { getBusinesses, getBusiness, createBusiness, updateBusiness, deleteBusiness } = require("../controllers/business")
 
-const {validatorCreateBusiness, validatorGetBusiness, validatorModifyBusiness, checkUniquesBusiness} = require("../validators/business")
-const {authEmployee} = require("../middleware/session")
-const checkRol       = require("../middleware/rol")
+const { validatorCreateBusiness, validatorGetBusiness, validatorModifyBusiness, checkUniquesBusiness } = require("../validators/business")
+const { authEmployee } = require("../middleware/session")
+const checkRol = require("../middleware/rol")
 
 //GET ALL BUSINESSES
 router.get("/", getBusinesses)
@@ -14,12 +14,12 @@ router.get("/", getBusinesses)
 router.get("/:id", validatorGetBusiness, getBusiness)
 
 //CREATE ONE BUSINESS
-router.post("/", authEmployee, checkUniquesBusiness, validatorCreateBusiness, createBusiness)
+router.post("/", checkUniquesBusiness, validatorCreateBusiness, createBusiness)
 
 //EDIT ONE BUSINESS
-router.put("/:id", authEmployee, validatorGetBusiness, checkUniquesBusiness, validatorModifyBusiness, updateBusiness)
+router.put("/:id", validatorGetBusiness, validatorModifyBusiness, updateBusiness)
 
 //DELETE ONE BUSINESS
-router.delete("/:id", authEmployee, validatorGetBusiness, deleteBusiness)
+router.delete("/:id", validatorGetBusiness, deleteBusiness)
 
 module.exports = router

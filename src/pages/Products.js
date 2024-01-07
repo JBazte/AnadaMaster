@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Card } from 'react-bootstrap';
+import { Form, Card, Button } from 'react-bootstrap';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar'
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 
 function Products() {
     const { id } = useParams();
+    let navigate = useNavigate();
 
     const [name, setName] = useState("");
     const [priceInEuro, setPriceInEuro] = useState("");
@@ -18,7 +19,7 @@ function Products() {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    });
 
     const fetchData = async () => {
         try {
@@ -30,17 +31,37 @@ function Products() {
             setPriceInDollar(priceInDollar);
             setDescription(description);
             setFormat(format);
-            setHarvest(harvest);
+            setHarvest(harvest.split("-")[0]);
             setQuantity(quantity);
         } catch (error) {
             console.error('Error:', error);
         }
     };
 
+    const handleDelete = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await fetch(`http://localhost:3001/api/product/${id}`, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            if (response.ok) {
+                console.log('Element deleted successfully');
+                navigate("/corereservas/list");
+            } else {
+                console.error('Failed to delete element');
+            }
+        } catch (error) {
+            console.error('Error deleting element:', error);
+        }
+    };
+
     return (
-        <div className="d-flex flex-column vh-100 overflow-hidden">
+        <div className="d-flex flex-column vh-100">
             <Navbar />
-            <section className="vh-100 overflow-hidden">
+            <section className="vh-100">
                 <div className="container-fluid">
                     <div className="row d-flex align-items-center">
                         <div className="col-sm-6 text-black mx-auto">
@@ -108,8 +129,10 @@ function Products() {
                                                 </div>
                                             </div>
                                             <div className='text-center justify-content-center'>
-                                                <button type="submit" className="btn btn-danger m-3 w-25">Cancelar</button>
-                                                <button type="submit" className="btn btn-success m-3 w-25">Confirmar</button>
+                                                <button className="btn btn-danger m-3 w-25" onClick={(event) => handleDelete(event)}>Eliminar</button>
+                                                <Link to={`/product/${id}/edit`}>
+                                                    <Button className="btn btn-primary m-3 w-25">Modificar</Button>
+                                                </Link>
                                             </div>
                                         </Form>
                                     </Card.Body>

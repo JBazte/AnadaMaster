@@ -3,15 +3,15 @@ const mongoose = require("mongoose")
 const BarrelScheme = new mongoose.Schema(
 
     {
-        barrelOrigin:{
+        barrelOrigin: {
             type: String
         },
-        cuantity:{
+        quantity: {
             type: Number
         }
     },
     {
-        timestamp: true, 
+        timestamp: true,
         versionKey: false
     }
 )

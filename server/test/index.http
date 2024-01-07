@@ -1,5 +1,5 @@
 GET http://localhost:3001/api/employee
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWFkNWU2OGY5OTVmMGFjZDQyODQwZCIsImFkbWluIjoxLCJpYXQiOjE3MDQ2NDk1NjYsImV4cCI6MTczNjE4NTU2Nn0.7OEt_1-vlBSCAp04jjSYZfoX2-NCg6BWldBQbkxk534
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWFkNWU2OGY5OTVmMGFjZDQyODQwZCIsImFkbWluIjoxLCJpYXQiOjE3MDQ2NDYyNjAsImV4cCI6MTczNjE4MjI2MH0.dgdQzL3ZxHbm-h_9nGO6eP6M7xxjY6HXgg78cL6a17U
 ###
 GET http://localhost:3001/api/employee/659ae3c3b7fded32af3ec175
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWFkNWU2OGY5OTVmMGFjZDQyODQwZCIsImFkbWluIjoxLCJpYXQiOjE3MDQ2NDk1NjYsImV4cCI6MTczNjE4NTU2Nn0.7OEt_1-vlBSCAp04jjSYZfoX2-NCg6BWldBQbkxk534
@@ -42,6 +42,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWFkNWU2O
 }
 
 ###
+PATCH  http://localhost:3001/api/employee/659ad5e68f995f0acd42840d HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWFkNWU2OGY5OTVmMGFjZDQyODQwZCIsImFkbWluIjoxLCJpYXQiOjE3MDQ2NDYyNjAsImV4cCI6MTczNjE4MjI2MH0.dgdQzL3ZxHbm-h_9nGO6eP6M7xxjY6HXgg78cL6a17U
+
+{
+    "name" : "Elisaa"
+}
+###
 POST http://localhost:3001/api/employee HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDIwNDc0MDMsImV4cCI6MTczMzU4MzQwM30.MEZZOq4UcyZFuRjga_kazb3jZx1oGwzi5TJVFrDwpMw
@@ -77,21 +85,21 @@ Content-Type: application/json
 ###
 POST http://localhost:3001/api/barrel HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWFkNWU2OGY5OTVmMGFjZDQyODQwZCIsImFkbWluIjoxLCJpYXQiOjE3MDQ2NDk1NjYsImV4cCI6MTczNjE4NTU2Nn0.7OEt_1-vlBSCAp04jjSYZfoX2-NCg6BWldBQbkxk534
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWIxODNlYWM2N2FmYmJhYjVkZjg0YyIsImFkbWluIjoxLCJpYXQiOjE3MDQ2NjUwNTksImV4cCI6MTczNjIwMTA1OX0.9qqroR01I8klvMpyjXLLLRNoWmSL8iKOQLmzBhpHfvQ
 
 {
     "barrelOrigin" : "La Rioja",
-    "cuantity" : 10
+    "quantity" : 10
 }
 
 ###
-
+POST http://localhost:3001/api/grape HTTP/1.1
 PUT http://localhost:3001/api/barrel/65638358cada9c1610d0b097 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDIwNDc0MDMsImV4cCI6MTczMzU4MzQwM30.MEZZOq4UcyZFuRjga_kazb3jZx1oGwzi5TJVFrDwpMw
 
 {
-    "barrelOrigin" : "La Rioja",
+    "origin" : "La Rioja",
     "cuantity" : 3
 }
 
@@ -101,7 +109,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWFkNWU2OGY5OTVmMGFjZDQyODQwZCIsImFkbWluIjoxLCJpYXQiOjE3MDQ2NDgzNjYsImV4cCI6MTczNjE4NDM2Nn0.NIL0ntiVsTBA6aQF74CyEHISbGCd8iHinU8cZdvpbsU
 
 {
-    "grapeOrigin" : "La Rioja",
+    "origin" : "La Rioja",
     "date" : "2020-10-09",
     "weight" : 0.9,
     "type" : "morada",
@@ -117,7 +125,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDI2NjMwNjUsImV4cCI6MTczNDE5OTA2NX0.IRMTDRlfdzJDmLBgZTj_kzGZ75Oy9QYdCdc2Opg2cr4
 
 {
-    "grapeOrigin" : "Madrid",
+    "origin" : "Madrid",
     "date" : "2020-10-09",
     "weight" : 0.9,
     "type" : "morada",
@@ -138,25 +146,3 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0N
 DELETE http://localhost:3001/api/barrel/657c955be68faa4c56bc8d8e  HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDI0OTYwOTUsImV4cCI6MTczNDAzMjA5NX0.S_TpJ1am_ijt_eiYFmRihoYwchbX4NbEeyUxfOiLS7w
 #eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0NmVmNjhkOWU4YTUyYWUzMyIsImFkbWluIjoxLCJpYXQiOjE3MDI2NjMwNjUsImV4cCI6MTczNDE5OTA2NX0.IRMTDRlfdzJDmLBgZTj_kzGZ75Oy9QYdCdc2Opg2cr4
-
-
-###
-PATCH http://localhost:3001/api/employee/659b183eac67afbbab5df84c HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWFkNWU2OGY5OTVmMGFjZDQyODQwZCIsImFkbWluIjoxLCJpYXQiOjE3MDQ2NjMwNDAsImV4cCI6MTczNjE5OTA0MH0.-gQfz7jO6qpumpyOCZTRPed06SEYeJw9oF4G5oppLiE
-
-{
-    "socialSecurityNumber" : 555501234,
-    "nif" : "91234567Z",
-    "name" : "Antonia",
-    "surname" : "García",
-    "birthdate" : "1995-11-10",
-    "domicile" : "Calle Rojo nº 45",
-    "address" : "Calle Rojo nº 45",
-    "phoneNumber" : "846761249",
-    "contact" : "846761249",
-    "employeeStatus" : "active",
-    "entryDate" : "2005-03-12",
-    "numOfChildren" : 0,
-    "maritalStatus" : "single",
-}
