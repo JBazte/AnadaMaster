@@ -15,7 +15,6 @@ const validatorCreateEmployee = [
     check("entryDate").exists().notEmpty().isDate(),
     check("numOfChildren").exists().notEmpty().isNumeric(),
     check("maritalStatus").exists().notEmpty().isString(),
-    check("horoscope").exists().notEmpty().isString(),
     check("admin").exists().notEmpty().isNumeric(),
     check("email").exists().notEmpty().isEmail(),
     check("password").exists().notEmpty().isString(),

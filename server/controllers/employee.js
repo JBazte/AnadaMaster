@@ -84,9 +84,12 @@ const insertEmployee = async (req, res) => {
         //matchedData solo funciona con un validator; si no no va a funcionar
         //const body = matchedData(req) //el dato filtrado por el modelo 
         const body = matchedData(req)
-        const data = await employeeModel.create(body)
+
+        const fechaISO = body.birthdate.toISOString();
+        console.log(fechaISO)
+        //const data = await employeeModel.create(body)
         
-        res.send(data)
+        //res.send(data)
     }catch(err){
         console.log(err)
         handleHttpError(res, "ERROR_CREATE_EMPLOYEE")
@@ -129,15 +132,24 @@ const registerEmployee = async (req, res) => {
         req = matchedData(req)
         const password = await encrypt(req.password)
         const body = {...req, password} // Con "..." duplicamos el objeto y le añadimos o sobreescribimos una propiedad
-        const employee = await employeeModel.create(body)
-        employee.set("password", undefined, {strict:false}) //Si no queremos que se muestre el hash en la respuesta
+
+        const month = parseInt(body.birthdate.substring(5,7))
+        const day = parseInt(body.birthdate.substring(8,10))
+
+        const horoscope = checkHoroscope(month, day)
+
+        const bodyTwo = { ...body, horoscope}
+
+
+        const employee = await employeeModel.create(bodyTwo)
+       employee.set("password", undefined, {strict:false}) //Si no queremos que se muestre el hash en la respuesta
     
         //le damos un token al usuario
         const data = {
             token: await tokenSign(employee),
             employee: employee
         }
-        res.send(data)
+       res.send(data)
 
     }catch(err){
         console.log(err)
@@ -172,6 +184,101 @@ const loginEmployee = async (req, res) => {
         console.log(err)
         handleHttpError(res, "ERROR_LOGIN_EMPLOYEE")
     }
+}
+
+function checkHoroscope(month, day){
+
+    var horoscope = ""
+
+    switch(month){
+
+        case 1:
+            if(day <= 22){
+                horoscope = "Capricornio"
+            }else{
+                horoscope = "Acuario"
+            }
+            break;
+        case 2:
+            if(day <= 20){
+                horoscope = "Acuario"
+            }else{
+                horoscope = "Piscis"
+            }
+            break;
+        case 3:
+            if(day <= 21){
+                horoscope = "Piscis"
+            }else{
+                horoscope = "Aries"
+            }
+            break;
+        case 4:
+            if(day <= 20){
+                horoscope = "Aries"
+            }else{
+                horoscope = "Tauro"
+            }
+            break;
+        case 5:
+            if(day <= 21){
+                horoscope = "Tauro"
+            }else{
+                horoscope = "Geminis"
+            }
+            break;
+        case 6:
+            if(day <= 21){
+                horoscope = "Geminis"
+            }else{
+                horoscope = "Cáncer"
+            }
+            break;
+        case 7:
+            if(day <= 22){
+                horoscope = "Cáncer"
+            }else{
+                horoscope = "Leo"
+            }
+            break;
+        case 8:
+            if(day <= 23){
+                horoscope = "Leo"
+            }else{
+                horoscope = "Virgo"
+            }
+            break;
+        case 9:
+            if(day <= 23){
+                horoscope = "Virgo"
+            }else{
+                horoscope = "Libra"
+            }
+            break;
+        case 10:
+            if(day <= 23){
+                horoscope = "Libra"
+            }else{
+                horoscope = "Escorpio"
+            }
+            break;
+        case 11:
+            if(day <= 22){
+                horoscope = "Escorpio"
+            }else{
+                horoscope = "Sagitario"
+            }
+            break;
+        case 12:
+            if(day <= 22){
+                horoscope = "Sagitario"
+            }else{
+                horoscope = "Capricornio"
+            }
+            break;
+    }
+
+    return horoscope
 }
 
 module.exports = { getEmployees, getEmployee, insertEmployee, updateEmployee, deleteEmployee, registerEmployee, loginEmployee }

@@ -20,14 +20,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWFkNWU2O
 ###
 POST http://localhost:3001/api/employee HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWFkNWU2OGY5OTVmMGFjZDQyODQwZCIsImFkbWluIjoxLCJpYXQiOjE3MDQ2NDk1NjYsImV4cCI6MTczNjE4NTU2Nn0.7OEt_1-vlBSCAp04jjSYZfoX2-NCg6BWldBQbkxk534
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWFkNWU2OGY5OTVmMGFjZDQyODQwZCIsImFkbWluIjoxLCJpYXQiOjE3MDQ2NTQzMTEsImV4cCI6MTczNjE5MDMxMX0.a3BVeBXDvqrEEkmy0uyJfhsD0e1fbJ03sZ3Y5M2nYUU
 
 {
     "socialSecurityNumber" : 555501234,
     "nif" : "91234567Z",
     "name" : "Emma",
     "surname" : "García",
-    "birthdate" : "1995-07-09",
+    "birthdate" : "1995-11-10",
     "domicile" : "Calle Rojo nº 45",
     "address" : "Calle Rojo nº 45",
     "phoneNumber" : "846761249",
@@ -36,7 +36,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OWFkNWU2O
     "entryDate" : "2005-03-12",
     "numOfChildren" : 0,
     "maritalStatus" : "single",
-    "horoscope" : "Cancer",
     "admin" : 0,
     "email" : "emma.garcia@gmail.com",
     "password" : "holiwis1234"
@@ -61,7 +60,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzMyYWY0N
     "entryDate" : "2010-03-22",
     "numOfChildren" : 0,
     "maritalStatus" : "single",
-    "horoscope" : "Cancer",
     "admin" : 1,
     "email" : "elisa.alonso@gmail.com",
     "password" : "holi2002"
