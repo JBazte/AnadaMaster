@@ -22,8 +22,13 @@ const insertGrape = async (req, res) => {
 
     try{
         const body = matchedData(req)
-        const data = await grapeModel.create(body)
-        res.send(data)
+        if(body.quality > 2){
+            const data = await grapeModel.create(body)  
+            res.send(data)
+        }else{
+            const data = "Grape quality not accepted!!"
+            res.send(data)
+        }
     }catch(err){
         console.log(err)
         handleHttpError(res, "ERROR_INSERT_GRAPE")
