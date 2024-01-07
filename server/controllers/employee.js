@@ -43,6 +43,37 @@ const getEmployees = async (req, res) => {
     }
 }
 
+const getEmployee = async (req, res) => {
+    try{
+        const {id} = matchedData(req)
+        const data = await employeeModel.findById(id)
+
+        var employeeAux = { _id : data._id,
+            socialSecurityNumber : data.socialSecurityNumber,
+            nif : data.nif,
+            name :   data.name, 
+            surname :   data.surname,
+            birthdate :   data.birthdate,
+            domicile :  data.domicile,
+            address :   data.address,
+            phoneNumber :   data.phoneNumber,
+            contact :   data.contact,
+            employeeStatus :  data.employeeStatus,
+            entryDate :   data.entryDate,
+            numOfChildren :   data.numOfChildren,
+            maritalStatus :   data.maritalStatus,
+            horoscope :   data.horoscope,
+            email :   data.email,
+            admin :   data.admin }
+
+        res.send(employeeAux)
+    }catch(err){
+        console.log(err)
+        handleHttpError(res, "ERROR_GET_EMPLOYEE")
+    }
+}
+
+
 /**
  * Inserta un registro
  * @param {*} req 
@@ -143,4 +174,4 @@ const loginEmployee = async (req, res) => {
     }
 }
 
-module.exports = { getEmployees, insertEmployee, updateEmployee, deleteEmployee, registerEmployee, loginEmployee }
+module.exports = { getEmployees, getEmployee, insertEmployee, updateEmployee, deleteEmployee, registerEmployee, loginEmployee }

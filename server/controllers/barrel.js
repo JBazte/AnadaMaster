@@ -18,6 +18,17 @@ const getBarrels = async (req, res) => {
     }
 }
 
+const getBarrel = async (req, res) => {
+    try{
+        const {id} = matchedData(req)
+        const data = await barrelModel.findById(id)
+        res.send(data)
+    }catch(err){
+        console.log(err)
+        handleHttpError(res, "ERROR_GET_BARRELS")
+    }
+}
+
 const insertBarrel =  async (req, res) => {
 
     try{
@@ -63,4 +74,4 @@ const deleteBarrel = async (req, res) => {
 }
 
 
-module.exports = { getBarrels, insertBarrel, updateBarrel, deleteBarrel }
+module.exports = { getBarrels, getBarrel, insertBarrel, updateBarrel, deleteBarrel }

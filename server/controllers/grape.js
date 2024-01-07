@@ -18,6 +18,17 @@ const getGrapes = async (req, res) => {
     }
 }
 
+const getGrape = async (req, res) => {
+    try{
+        const {id} = matchedData(req)
+        const data = await grapeModel.findById(id)
+        res.send(data)
+    }catch(err){
+        console.log(err)
+        handleHttpError(res, "ERROR_GET_GRAPES")
+    }
+}
+
 const insertGrape = async (req, res) => {
 
     try{
@@ -66,4 +77,4 @@ const deleteGrape = async (req, res) => {
     }
 }
 
-module.exports = { getGrapes, insertGrape, updateGrape, deleteGrape }
+module.exports = { getGrapes, insertGrape, updateGrape, deleteGrape, getGrape }
