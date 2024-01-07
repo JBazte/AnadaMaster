@@ -71,12 +71,33 @@ function ProductsEdit() {
                                     <Card.Body className="py-3 d-flex flex-column align-items-center">
                                         <h3 className="mb-4">Producto</h3>
                                         <Form className='w-100 px-2'>
-                                            <div className='d-flex flex-row'>
+                                            <div className='d-flex'>
                                                 <div className='flex-column col-sm-4 p-2'>
                                                     <Form.Group controlId="formName">
                                                         <Form.Label className='fw-bold text-dark h6'>Nombre</Form.Label>
                                                         <div className={`d-flex flex-row`}>
                                                             <Form.Control type="text" required defaultValue={name} onChange={handleNameChange} />
+                                                        </div>
+                                                    </Form.Group>
+                                                    <br />
+                                                    <Form.Group controlId="formPrice">
+                                                        <Form.Label className='fw-bold text-dark h6'>Precio (€)</Form.Label>
+                                                        <div className={`d-flex flex-row`}>
+                                                            <Form.Control type="number" required defaultValue={priceInEuro} onChange={handlePriceInEuroChange} />
+                                                        </div>
+                                                    </Form.Group>
+                                                    <br />
+                                                    <Form.Group controlId="formHarvest">
+                                                        <Form.Label className='fw-bold text-dark h6'>Cosecha</Form.Label>
+                                                        <div className={`d-flex flex-row`}>
+                                                            <Form.Control type="number" required defaultValue={harvest} onChange={handleHarvestChange} />
+                                                        </div>
+                                                    </Form.Group>
+                                                    <br />
+                                                    <Form.Group controlId="formQuantity">
+                                                        <Form.Label className='fw-bold text-dark h6'>Cantidad</Form.Label>
+                                                        <div className={`d-flex flex-row`}>
+                                                            <Form.Control type="number" required defaultValue={quantity} onChange={handleQuantityChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
@@ -87,42 +108,11 @@ function ProductsEdit() {
                                                             <Form.Control type="text" required defaultValue={format} onChange={handleFormatChange} />
                                                         </div>
                                                     </Form.Group>
-                                                </div>
-                                            </div>
-                                            <div className='d-flex flex-row'>
-                                                <div className={`flex-column col-sm-4 p-2`}>
-                                                    <Form.Group controlId="formPrice">
-                                                        <Form.Label className='fw-bold text-dark h6'>Precio (€)</Form.Label>
-                                                        <div className={`d-flex flex-row`}>
-                                                            <Form.Control type="number" required defaultValue={priceInEuro} onChange={handlePriceInEuroChange} />
-                                                        </div>
-                                                    </Form.Group>
-                                                </div>
-                                                <div className='flex-column col-sm-8 p-2'>
+                                                    <br />
                                                     <Form.Group controlId="formDescription">
                                                         <Form.Label className='fw-bold text-dark h6'>Descripción</Form.Label>
-                                                        <div className={`d-flex flex-row `}>
-                                                            <Form.Control as="textarea" rows="1" required defaultValue={description} onChange={handleDescriptionChange} />
-                                                        </div>
-                                                    </Form.Group>
-                                                </div>
-                                            </div>
-                                            <div className='d-flex flex-row'>
-                                                <div className='flex-column col-sm-4 p-2'>
-                                                    <Form.Group controlId="formHarvest">
-                                                        <Form.Label className='fw-bold text-dark h6'>Cosecha</Form.Label>
-                                                        <div className={`d-flex flex-row`}>
-                                                            <Form.Control type="number" required defaultValue={harvest} onChange={handleHarvestChange} />
-                                                        </div>
-                                                    </Form.Group>
-                                                </div>
-                                            </div>
-                                            <div className='d-flex flex-row'>
-                                                <div className='flex-column col-sm-4 p-2'>
-                                                    <Form.Group controlId="formQuantity">
-                                                        <Form.Label className='fw-bold text-dark h6'>Cantidad</Form.Label>
-                                                        <div className={`d-flex flex-row`}>
-                                                            <Form.Control type="number" required defaultValue={quantity} onChange={handleQuantityChange} />
+                                                        <div className={`d-flex flex-row row-sm-4`}>
+                                                            <Form.Control as="textarea" style={{ height: "220px", resize: "none" }} required defaultValue={description} onChange={handleDescriptionChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>

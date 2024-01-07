@@ -49,12 +49,45 @@ function Products() {
                                     <Card.Body className="py-3 d-flex flex-column align-items-center">
                                         <h3 className="mb-4">Producto</h3>
                                         <Form className='w-100 px-2'>
-                                            <div className='d-flex flex-row'>
+                                            <div className='d-flex'>
                                                 <div className='flex-column col-sm-4 p-2'>
                                                     <Form.Group controlId="formName">
                                                         <Form.Label className='fw-bold text-dark h6'>Nombre</Form.Label>
                                                         <div className={`d-flex flex-row `}>
                                                             <Form.Control type="text" readOnly defaultValue={name} disabled />
+                                                        </div>
+                                                    </Form.Group>
+                                                    <br />
+                                                    <div className='flex-row row mt-0'>
+                                                        <div className={`flex-column col-sm-6 px-2`}>
+                                                            <Form.Group controlId="formPrice">
+                                                                <Form.Label className='fw-bold text-dark h6'>Precio (€)</Form.Label>
+                                                                <div className={`d-flex flex-row`}>
+                                                                    <Form.Control type="number" readOnly defaultValue={priceInEuro} disabled />
+                                                                </div>
+                                                            </Form.Group>
+                                                        </div>
+                                                        <div className={`flex-column col-sm-6 px-2`}>
+                                                            <Form.Group controlId="formPrice">
+                                                                <Form.Label className='fw-bold text-dark h6'>Precio ($)</Form.Label>
+                                                                <div className={`d-flex flex-row `}>
+                                                                    <Form.Control type="number" readOnly defaultValue={priceInDollar} disabled />
+                                                                </div>
+                                                            </Form.Group>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <Form.Group controlId="formHarvest">
+                                                        <Form.Label className='fw-bold text-dark h6'>Cosecha</Form.Label>
+                                                        <div className={`d-flex flex-row`}>
+                                                            <Form.Control type="number" readOnly defaultValue={harvest} disabled />
+                                                        </div>
+                                                    </Form.Group>
+                                                    <br />
+                                                    <Form.Group controlId="formQuantity">
+                                                        <Form.Label className='fw-bold text-dark h6'>Cantidad</Form.Label>
+                                                        <div className={`d-flex flex-row`}>
+                                                            <Form.Control type="number" readOnly defaultValue={quantity} disabled />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
@@ -65,50 +98,11 @@ function Products() {
                                                             <Form.Control type="text" readOnly defaultValue={format} disabled />
                                                         </div>
                                                     </Form.Group>
-                                                </div>
-                                            </div>
-                                            <div className='d-flex flex-row'>
-                                                <div className={`flex-column col-sm-2 p-2 `}>
-                                                    <Form.Group controlId="formPrice">
-                                                        <Form.Label className='fw-bold text-dark h6'>Precio (€)</Form.Label>
-                                                        <div className={`d-flex flex-row`}>
-                                                            <Form.Control type="number" readOnly defaultValue={priceInEuro} disabled />
-                                                        </div>
-                                                    </Form.Group>
-                                                </div>
-                                                <div className={`flex-column col-sm-2 p-2`}>
-                                                    <Form.Group controlId="formPrice">
-                                                        <Form.Label className='fw-bold text-dark h6'>Precio ($)</Form.Label>
-                                                        <div className={`d-flex flex-row `}>
-                                                            <Form.Control type="number" readOnly defaultValue={priceInDollar} disabled />
-                                                        </div>
-                                                    </Form.Group>
-                                                </div>
-                                                <div className='flex-column col-sm-8 p-2'>
+                                                    <br />
                                                     <Form.Group controlId="formDescription">
                                                         <Form.Label className='fw-bold text-dark h6'>Descripción</Form.Label>
                                                         <div className={`d-flex flex-row `}>
-                                                            <Form.Control as="textarea" rows="1" readOnly defaultValue={description} disabled />
-                                                        </div>
-                                                    </Form.Group>
-                                                </div>
-                                            </div>
-                                            <div className='d-flex flex-row'>
-                                                <div className='flex-column col-sm-4 p-2'>
-                                                    <Form.Group controlId="formHarvest">
-                                                        <Form.Label className='fw-bold text-dark h6'>Cosecha</Form.Label>
-                                                        <div className={`d-flex flex-row`}>
-                                                            <Form.Control type="number" readOnly defaultValue={harvest} disabled />
-                                                        </div>
-                                                    </Form.Group>
-                                                </div>
-                                            </div>
-                                            <div className='d-flex flex-row'>
-                                                <div className='flex-column col-sm-4 p-2'>
-                                                    <Form.Group controlId="formQuantity">
-                                                        <Form.Label className='fw-bold text-dark h6'>Cantidad</Form.Label>
-                                                        <div className={`d-flex flex-row`}>
-                                                            <Form.Control type="number" readOnly defaultValue={quantity} disabled />
+                                                            <Form.Control as="textarea" style={{ height: "220px", resize: "none" }} readOnly defaultValue={description} disabled />
                                                         </div>
                                                     </Form.Group>
                                                 </div>

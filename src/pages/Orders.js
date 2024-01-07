@@ -53,18 +53,7 @@ function Orders() {
                                                             <Form.Control type="text" readOnly defaultValue={idClient} disabled />
                                                         </div>
                                                     </Form.Group>
-                                                </div>
-                                                <div className='flex-column col-sm-8 p-2'>
-                                                    <Form.Group controlId="formCart">
-                                                        <Form.Label className='fw-bold text-dark h6'>Cesta</Form.Label>
-                                                        <div className={`d-flex flex-row`}>
-                                                            <Form.Control as="textarea" rows="1" readOnly defaultValue={Object.keys(cart).join(', ')} disabled />
-                                                        </div>
-                                                    </Form.Group>
-                                                </div>
-                                            </div>
-                                            <div className='d-flex flex-row'>
-                                                <div className='flex-column col-sm-4 p-2'>
+                                                    <br />
                                                     <Form.Group controlId="formDiscount">
                                                         <Form.Label className='fw-bold text-dark h6'>Descuento (%)</Form.Label>
                                                         <div className={`d-flex flex-row `}>
@@ -77,10 +66,7 @@ function Orders() {
                                                             />
                                                         </div>
                                                     </Form.Group>
-                                                </div>
-                                            </div>
-                                            <div className='d-flex flex-row'>
-                                                <div className='flex-column col-sm-4 p-2'>
+                                                    <br />
                                                     <Form.Group controlId="formPrice">
                                                         <Form.Label className='fw-bold text-dark h6'>Precio Total</Form.Label>
                                                         <div className={`d-flex flex-row`}>
@@ -89,6 +75,13 @@ function Orders() {
                                                     </Form.Group>
                                                 </div>
                                                 <div className='flex-column col-sm-8 p-2'>
+                                                    <Form.Group controlId="formCart">
+                                                        <Form.Label className='fw-bold text-dark h6'>Cesta</Form.Label>
+                                                        <div className={`d-flex flex-row`}>
+                                                            <Form.Control as="textarea" style={{ height: "130px", resize: "none" }} readOnly defaultValue={Object.keys(cart).join(', ')} disabled />
+                                                        </div>
+                                                    </Form.Group>
+                                                    <br />
                                                     <Form.Group controlId="formStatus">
                                                         <Form.Label className='fw-bold text-dark h6'>Estado</Form.Label>
                                                         <div className={`d-flex flex-row `}>

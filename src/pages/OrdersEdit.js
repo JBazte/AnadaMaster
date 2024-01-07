@@ -72,18 +72,7 @@ function OrdersEdit() {
                                                             <Form.Control type="text" required defaultValue={idClient} onChange={handleIdClientChange} />
                                                         </div>
                                                     </Form.Group>
-                                                </div>
-                                                <div className='flex-column col-sm-8 p-2'>
-                                                    <Form.Group controlId="formCart">
-                                                        <Form.Label className='fw-bold text-dark h6'>Cesta</Form.Label>
-                                                        <div className={`d-flex flex-row `}>
-                                                            <Form.Control as="textarea" rows="1" required defaultValue={Object.keys(cart).join(', ')} onChange={handleCartChange} />
-                                                        </div>
-                                                    </Form.Group>
-                                                </div>
-                                            </div>
-                                            <div className='d-flex flex-row'>
-                                                <div className='flex-column col-sm-4 p-2'>
+                                                    <br />
                                                     <Form.Group controlId="formDiscount">
                                                         <Form.Label className='fw-bold text-dark h6'>Descuento (%)</Form.Label>
                                                         <div className={`d-flex flex-row`}>
@@ -97,18 +86,22 @@ function OrdersEdit() {
                                                             />
                                                         </div>
                                                     </Form.Group>
-                                                </div>
-                                            </div>
-                                            <div className='d-flex flex-row'>
-                                                <div className='flex-column col-sm-4 p-2'>
+                                                    <br />
                                                     <Form.Group controlId="formPrice">
-                                                        <Form.Label className='fw-bold text-dark h6'>Precio Total</Form.Label>
+                                                        <Form.Label className='fw-bold text-dark h6'>Precio Total (€)</Form.Label>
                                                         <div className={`d-flex flex-row `}>
                                                             <Form.Control type="number" required defaultValue={price} onChange={handlePriceChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
                                                 <div className='flex-column col-sm-8 p-2'>
+                                                    <Form.Group controlId="formCart">
+                                                        <Form.Label className='fw-bold text-dark h6'>Cesta</Form.Label>
+                                                        <div className={`d-flex flex-row `}>
+                                                            <Form.Control as="textarea" style={{ height: "130px", resize: "none" }} required defaultValue={Object.keys(cart).join(', ')} onChange={handleCartChange} />
+                                                        </div>
+                                                    </Form.Group>
+                                                    <br />
                                                     <Form.Group controlId="formStatus">
                                                         <Form.Label className='fw-bold text-dark h6'>Estado</Form.Label>
                                                         <div className={`d-flex flex-row `}>
