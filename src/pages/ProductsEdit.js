@@ -5,16 +5,39 @@ import Navbar from '../components/Navbar'
 import { useParams } from 'react-router-dom';
 
 
-function Products() {
+function ProductsEdit() {
     const { id } = useParams();
 
     const [name, setName] = useState("");
     const [priceInEuro, setPriceInEuro] = useState("");
-    const [priceInDollar, setPriceInDollar] = useState();
     const [description, setDescription] = useState("");
     const [format, setFormat] = useState();
     const [harvest, setHarvest] = useState();
     const [quantity, setQuantity] = useState();
+
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    };
+
+    const handlePriceInEuroChange = (e) => {
+        setPriceInEuro(e.target.value);
+    };
+
+    const handleDescriptionChange = (e) => {
+        setDescription(e.target.value);
+    };
+
+    const handleFormatChange = (e) => {
+        setFormat(e.target.value);
+    };
+
+    const handleHarvestChange = (e) => {
+        setHarvest(e.target.value);
+    };
+
+    const handleQuantityChange = (e) => {
+        setQuantity(e.target.value);
+    };
 
     useEffect(() => {
         fetchData();
@@ -24,10 +47,9 @@ function Products() {
         try {
             const response = await fetch(`http://localhost:3001/api/product/${id}`);
             const jsonData = await response.json();
-            const { name, priceInEuro, priceInDollar, description, format, harvest, quantity } = jsonData;
+            const { name, priceInEuro, description, format, harvest, quantity } = jsonData;
             setName(name);
             setPriceInEuro(priceInEuro);
-            setPriceInDollar(priceInDollar);
             setDescription(description);
             setFormat(format);
             setHarvest(harvest);
@@ -53,34 +75,26 @@ function Products() {
                                                 <div className='flex-column col-sm-4 p-2'>
                                                     <Form.Group controlId="formName">
                                                         <Form.Label className='fw-bold text-dark h6'>Nombre</Form.Label>
-                                                        <div className={`d-flex flex-row `}>
-                                                            <Form.Control type="text" readOnly defaultValue={name} disabled />
+                                                        <div className={`d-flex flex-row`}>
+                                                            <Form.Control type="text" required defaultValue={name} onChange={handleNameChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
                                                 <div className='flex-column col-sm-8 p-2'>
                                                     <Form.Group controlId="formFormat">
                                                         <Form.Label className='fw-bold text-dark h6'>Formato</Form.Label>
-                                                        <div className={`d-flex flex-row}`}>
-                                                            <Form.Control type="text" readOnly defaultValue={format} disabled />
+                                                        <div className={`d-flex flex-row`}>
+                                                            <Form.Control type="text" required defaultValue={format} onChange={handleFormatChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
                                             </div>
                                             <div className='d-flex flex-row'>
-                                                <div className={`flex-column col-sm-2 p-2 `}>
+                                                <div className={`flex-column col-sm-4 p-2`}>
                                                     <Form.Group controlId="formPrice">
                                                         <Form.Label className='fw-bold text-dark h6'>Precio (€)</Form.Label>
                                                         <div className={`d-flex flex-row`}>
-                                                            <Form.Control type="number" readOnly defaultValue={priceInEuro} disabled />
-                                                        </div>
-                                                    </Form.Group>
-                                                </div>
-                                                <div className={`flex-column col-sm-2 p-2`}>
-                                                    <Form.Group controlId="formPrice">
-                                                        <Form.Label className='fw-bold text-dark h6'>Precio ($)</Form.Label>
-                                                        <div className={`d-flex flex-row `}>
-                                                            <Form.Control type="number" readOnly defaultValue={priceInDollar} disabled />
+                                                            <Form.Control type="number" required defaultValue={priceInEuro} onChange={handlePriceInEuroChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
@@ -88,7 +102,7 @@ function Products() {
                                                     <Form.Group controlId="formDescription">
                                                         <Form.Label className='fw-bold text-dark h6'>Descripción</Form.Label>
                                                         <div className={`d-flex flex-row `}>
-                                                            <Form.Control as="textarea" rows="1" readOnly defaultValue={description} disabled />
+                                                            <Form.Control as="textarea" rows="1" required defaultValue={description} onChange={handleDescriptionChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
@@ -98,7 +112,7 @@ function Products() {
                                                     <Form.Group controlId="formHarvest">
                                                         <Form.Label className='fw-bold text-dark h6'>Cosecha</Form.Label>
                                                         <div className={`d-flex flex-row`}>
-                                                            <Form.Control type="number" readOnly defaultValue={harvest} disabled />
+                                                            <Form.Control type="number" required defaultValue={harvest} onChange={handleHarvestChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
@@ -108,7 +122,7 @@ function Products() {
                                                     <Form.Group controlId="formQuantity">
                                                         <Form.Label className='fw-bold text-dark h6'>Cantidad</Form.Label>
                                                         <div className={`d-flex flex-row`}>
-                                                            <Form.Control type="number" readOnly defaultValue={quantity} disabled />
+                                                            <Form.Control type="number" required defaultValue={quantity} onChange={handleQuantityChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
@@ -133,4 +147,4 @@ function Products() {
 };
 
 
-export default Products;
+export default ProductsEdit;

@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar'
 import { useParams } from 'react-router-dom';
 
-function Clients() {
+function ClientsEdit() {
     const { id } = useParams();
 
     const [name, setName] = useState("");
@@ -33,6 +33,26 @@ function Clients() {
         }
     };
 
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    };
+
+    const handleSurnameChange = (e) => {
+        setSurname(e.target.value);
+    };
+
+    const handleAddressChange = (e) => {
+        setAddress(e.target.value);
+    };
+
+    const handlePhoneChange = (e) => {
+        setPhone(e.target.value);
+    };
+
+    const handleNifChange = (e) => {
+        setNif(e.target.value);
+    };
+
     return (
         <div className="d-flex flex-column vh-100 overflow-hidden">
             <Navbar />
@@ -50,15 +70,15 @@ function Clients() {
                                                     <Form.Group controlId="formName">
                                                         <Form.Label className='fw-bold text-dark h6'>Nombre</Form.Label>
                                                         <div className={`d-flex flex-row `}>
-                                                            <Form.Control type="text" readOnly defaultValue={name} disabled />
+                                                            <Form.Control type="text" required defaultValue={name} onChange={handleNameChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
                                                 <div className='flex-column col-sm-8 p-2'>
                                                     <Form.Group controlId="formSurname">
                                                         <Form.Label className='fw-bold text-dark h6'>Apellidos</Form.Label>
-                                                        <div className={`d-flex flex-row`}>
-                                                            <Form.Control type="text" readOnly defaultValue={surname} disabled />
+                                                        <div className={`d-flex flex-row `}>
+                                                            <Form.Control type="text" required defaultValue={surname} onChange={handleSurnameChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
@@ -67,8 +87,8 @@ function Clients() {
                                                 <div className='flex-column col-sm-12 p-2'>
                                                     <Form.Group controlId="formAddress">
                                                         <Form.Label className='fw-bold text-dark h6'>Dirección</Form.Label>
-                                                        <div className={`d-flex flex-row`}>
-                                                            <Form.Control type="text" readOnly defaultValue={address} disabled />
+                                                        <div className={`d-flex flex-row `}>
+                                                            <Form.Control type="text" required defaultValue={address} onChange={handleAddressChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
@@ -77,8 +97,8 @@ function Clients() {
                                                 <div className='flex-column col-sm-4 p-2'>
                                                     <Form.Group controlId="formPhone">
                                                         <Form.Label className='fw-bold text-dark h6'>Teléfono</Form.Label>
-                                                        <div className={`d-flex flex-row`}>
-                                                            <Form.Control type="text" readOnly defaultValue={phone} disabled />
+                                                        <div className={`d-flex flex-row `}>
+                                                            <Form.Control type="text" required defaultValue={phone} onChange={handlePhoneChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
@@ -86,7 +106,7 @@ function Clients() {
                                                     <Form.Group controlId="formNIF">
                                                         <Form.Label className='fw-bold text-dark h6'>NIF</Form.Label>
                                                         <div className={`d-flex flex-row`}>
-                                                            <Form.Control type="text" readOnly defaultValue={nif} disabled />
+                                                            <Form.Control type="text" required defaultValue={nif} onChange={handleNifChange} />
                                                         </div>
                                                     </Form.Group>
                                                 </div>
@@ -111,4 +131,4 @@ function Clients() {
 };
 
 
-export default Clients;
+export default ClientsEdit;

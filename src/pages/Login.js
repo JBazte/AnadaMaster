@@ -4,8 +4,6 @@ import { Form, Card, Alert } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Footer from '../components/Footer';
 
-const serverURL = process.env.REACT_APP_BACKEND_URL;
-
 function Login() {
     let navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -20,7 +18,7 @@ function Login() {
         e.preventDefault();
 
         try {
-            const response = await fetch(`${serverURL}/auth/login/member`, {
+            const response = await fetch(`http://localhost:3001/api/employee/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -31,23 +29,17 @@ function Login() {
                 })
             });
 
-            const data = await response.json();
-
-            const { token } = data;
-            // Almacenar el token en el encabezado de las solicitudes
-            /** 
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            };
-            */
-            document.cookie = 'user-token=' + token + '; path=/';
-            navigate("/");
-            // Aquí puedes realizar acciones con la respuesta del servidor
-            console.log(data);
+            if (response.ok) {
+                const data = await response.json();
+                const { token } = data;
+                document.cookie = 'user-token=' + token + '; path=/';
+                navigate("/corereservas/list");
+                console.log(data);
+            } else {
+                throw new Error('Nombre de usuario o contraseña incorrectos');
+            }
         } catch (error) {
-            // Aquí puedes manejar el error de la solicitud
-            setErrorMessage("Nombre de usuario o contraseña incorrectos");
+            setErrorMessage(error.message);
             console.error(error);
         }
     };
@@ -67,7 +59,6 @@ function Login() {
                                                 <Form.Label className='fw-bold text-dark h6'>Correo Electrónico</Form.Label>
                                                 <Form.Control type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
                                             </Form.Group>
-                                            <br />
                                             <Form.Group controlId="formPassword">
                                                 <Form.Label className='fw-bold text-dark h6'>Contraseña</Form.Label>
                                                 <Form.Control type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -77,8 +68,7 @@ function Login() {
                                                     <span>{errorMessage}</span>
                                                 </Alert>
                                             )}
-                                            <br />
-                                            <button type="submit" className="btn btn-primary mt-3 w-100">Confirmar</button>
+                                            <button type="submit" className="btn btn-primary mt-4 w-100">Confirmar</button>
                                         </Form>
                                     </Card.Body>
                                 </Card>
