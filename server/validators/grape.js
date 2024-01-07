@@ -2,7 +2,7 @@ const { check } = require("express-validator")
 const validateResults = require("../utils/handleValidator.js")
 
 const validatorCreateGrape = [
-    check("origin").exists().notEmpty().isString(), 
+    check("grapeOrigin").exists().notEmpty().isString(), 
     check("date").exists().notEmpty().isDate(),
     check("weight").exists().notEmpty().isNumeric(),
     check("type" ).exists().notEmpty().isString(),

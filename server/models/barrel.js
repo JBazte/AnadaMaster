@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const BarrelScheme = new mongoose.Schema(
 
     {
-        origin:{
+        barrelOrigin:{
             type: String
         },
         cuantity:{

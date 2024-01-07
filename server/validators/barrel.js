@@ -2,7 +2,7 @@ const { check } = require("express-validator")
 const validateResults = require("../utils/handleValidator.js")
 
 const validatorCreateBarrel = [
-    check("origin").exists().notEmpty().isString(), 
+    check("barrelOrigin").exists().notEmpty().isString(), 
     check("cuantity").exists().notEmpty().isNumeric(),
 
     (req, res, next) => validateResults (req, res, next) //next es al que le vamos a pasar el procesamiento, al controller se lo pasamos

@@ -17,7 +17,7 @@ router.get("/:id", validatorGetIndiviualClient, getIndividualClient)
 router.post("/", authEmployee, checkUniquesIndividualClient, validatorCreateIndiviualClient, createIndividualClient)
 
 //EDIT ONE INDIVIDUAL CLIENT
-router.put("/:id", authEmployee, validatorGetIndiviualClient, checkUniquesIndividualClient, validatorModifyIndiviualClient, updateIndividualClient)
+router.put("/:id", authEmployee, validatorGetIndiviualClient, checkUniquesIndividualClient, updateIndividualClient)
 
 //DELETE ONE INDIVIDUAL CLIENT
 router.delete("/:id", authEmployee, validatorGetIndiviualClient, deleteIndividualClient)

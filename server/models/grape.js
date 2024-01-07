@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const GrapeScheme = new mongoose.Schema(
 
     {
-        origin:{
+        grapeOrigin:{
             type: String
         },
         date:{
