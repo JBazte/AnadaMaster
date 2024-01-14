@@ -64,7 +64,7 @@ function RawMaterialGrapeEdit() {
         try {
             const token = getCookie("user-token");
             const headers = { 'Authorization': `Bearer ${token}` };
-            const response = await fetch(`http://localhost:3001/api/grape/${id}`, { headers });
+            const response = await fetch(`https://anadamaster-api.onrender.com1/api/grape/${id}`, { headers });
             const jsonData = await response.json();
             const { grapeOrigin, date, weight, type, ripeness, quality } = jsonData;
             console.log(jsonData);
@@ -91,7 +91,7 @@ function RawMaterialGrapeEdit() {
                 ripeness: ripeness,
                 quality: quality
             };
-            const response = await fetch(`http://localhost:3001/api/grape/${id}`, {
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/grape/${id}`, {
                 method: 'PUT',
                 headers,
                 body: JSON.stringify(updatedData)

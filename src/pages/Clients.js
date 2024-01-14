@@ -20,7 +20,7 @@ function Clients() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/individualClient/${id}`);
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/individualClient/${id}`);
             const jsonData = await response.json();
             const { NIF, address, name, phoneNumber, surname } = jsonData;
             setName(name);
@@ -38,7 +38,7 @@ function Clients() {
         event.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:3001/api/individualClient/${id}`, {
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/individualClient/${id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' }
             });

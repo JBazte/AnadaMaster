@@ -25,7 +25,7 @@ function RawMaterialBarrelElement({ data }) {
         try {
             const token = getCookie("user-token");
             const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` };
-            const response = await fetch(`http://localhost:3001/api/barrel/${_id}`, {
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/barrel/${_id}`, {
                 method: 'DELETE',
                 headers: headers
             });

@@ -15,19 +15,19 @@ function SelectionCoreReservas() {
         let apiUrl = "";
         switch (selectedValue) {
             case "0":
-                apiUrl = "http://localhost:3001/api/business";
+                apiUrl = "https://anadamaster-api.onrender.com/api/business";
                 break;
             case "1":
-                apiUrl = "http://localhost:3001/api/individualClient";
+                apiUrl = "https://anadamaster-api.onrender.com/api/individualClient";
                 break;
             case "2":
-                apiUrl = "http://localhost:3001/api/productOrder";
+                apiUrl = "https://anadamaster-api.onrender.com/api/productOrder";
                 break;
             case "3":
-                apiUrl = "http://localhost:3001/api/product";
+                apiUrl = "https://anadamaster-api.onrender.com/api/product";
                 break;
             default:
-                apiUrl = "http://localhost:3001/api/individualClient";
+                apiUrl = "https://anadamaster-api.onrender.com/api/individualClient";
                 break;
         }
         try {

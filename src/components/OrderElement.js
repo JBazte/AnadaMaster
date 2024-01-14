@@ -8,7 +8,7 @@ function OrderElement({ data }) {
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/productOrder/${_id}`, {
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/productOrder/${_id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' }
             });

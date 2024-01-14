@@ -8,7 +8,7 @@ function ClientElement({ data }) {
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/individualClient/${_id}`, {
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/individualClient/${_id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' }
             });

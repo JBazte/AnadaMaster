@@ -26,7 +26,7 @@ function EmployeeElement({ data }) {
         try {
             const token = getCookie("user-token");
             const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` };
-            const response = await fetch(`http://localhost:3001/api/employee/${_id}`, {
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/employee/${_id}`, {
                 method: 'DELETE',
                 headers: headers
             });

@@ -43,7 +43,7 @@ function RawMaterialBarrelEdit() {
         try {
             const token = getCookie("user-token");
             const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
-            const response = await fetch(`http://localhost:3001/api/barrel/${id}`, {
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/barrel/${id}`, {
                 method: 'PUT',
                 headers: headers,
                 body: JSON.stringify({
@@ -68,7 +68,7 @@ function RawMaterialBarrelEdit() {
         try {
             const token = getCookie("user-token");
             const headers = { 'Authorization': `Bearer ${token}` };
-            const response = await fetch(`http://localhost:3001/api/barrel/${id}`, { headers });
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/barrel/${id}`, { headers });
             const jsonData = await response.json();
             const { barrelOrigin, quantity } = jsonData;
             console.log(jsonData);

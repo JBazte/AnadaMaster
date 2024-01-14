@@ -21,7 +21,7 @@ function Business() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/business/${id}`);
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/business/${id}`);
             const jsonData = await response.json();
             const { name, phoneNumber, address, shippingAddress, CIF, volumeDiscount } = jsonData;
             setName(name);
@@ -39,7 +39,7 @@ function Business() {
         event.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:3001/api/business/${id}`, {
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/business/${id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' }
             });

@@ -8,7 +8,7 @@ function BusinessElement({ data }) {
 
     const handleDelete = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/business/${_id}`, {
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/business/${_id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' }
             });

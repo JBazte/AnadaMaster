@@ -46,7 +46,7 @@ function ProductsEdit() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/product/${id}`);
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/product/${id}`);
             const jsonData = await response.json();
             const { name, priceInEuro, description, format, harvest, quantity } = jsonData;
             setName(name);
@@ -64,7 +64,7 @@ function ProductsEdit() {
             const selectedDate = new Date(harvest);
             const formattedDate = selectedDate.toISOString();
 
-            const response = await fetch(`http://localhost:3001/api/product/${id}`, {
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/product/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

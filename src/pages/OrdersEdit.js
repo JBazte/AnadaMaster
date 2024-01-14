@@ -40,7 +40,7 @@ function OrdersEdit() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/productOrder/${id}`);
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/productOrder/${id}`);
             const jsonData = await response.json();
             const { discount, idClient, status, totalPrice, basket } = jsonData;
             setDiscount(discount);
@@ -54,7 +54,7 @@ function OrdersEdit() {
     };
     const updateOrderData = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/productOrder/${id}`, {
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/productOrder/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

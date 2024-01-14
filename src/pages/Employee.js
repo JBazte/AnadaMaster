@@ -46,7 +46,7 @@ function Employee() {
         try {
             const token = getCookie("user-token");
             const headers = { 'Authorization': `Bearer ${token}` };
-            const response = await fetch(`http://localhost:3001/api/employee/${id}`, { headers });
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/employee/${id}`, { headers });
             const jsonData = await response.json();
             const { name, surname, address, birthdate, phoneNumber, contact, socialSecurityNumber, nif, category, entryDate, maritalStatus, numOfChildren } = jsonData;
             setName(name);
@@ -72,7 +72,7 @@ function Employee() {
         try {
             const token = getCookie("user-token");
             const headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` };
-            const response = await fetch(`http://localhost:3001/api/employee/${id}`, {
+            const response = await fetch(`https://anadamaster-api.onrender.com/api/employee/${id}`, {
                 method: 'DELETE',
                 headers: headers
             });

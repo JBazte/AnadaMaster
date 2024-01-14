@@ -30,16 +30,16 @@ function SelectionCoreBodegas() {
         let apiUrl = "";
         switch (selectedValue) {
             case "1":
-                apiUrl = "http://localhost:3001/api/employee";
+                apiUrl = "https://anadamaster-api.onrender.com/api/employee";
                 break;
             case "2":
-                apiUrl = "http://localhost:3001/api/grape";
+                apiUrl = "https://anadamaster-api.onrender.com/api/grape";
                 break;
             case "3":
-                apiUrl = "http://localhost:3001/api/barrel";
+                apiUrl = "https://anadamaster-api.onrender.com/api/barrel";
                 break;
             default:
-                apiUrl = "http://localhost:3001/api/employee";
+                apiUrl = "https://anadamaster-api.onrender.com/api/employee";
                 break;
         }
         try {
