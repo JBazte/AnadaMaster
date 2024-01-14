@@ -1,7 +1,7 @@
 {
   "name": "anadamaster",
   "version": "0.1.0",
-  "homepage": "https://eliistark.github.io",
+  "homepage": "https://anadamaster.onrender.com/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
@@ -35,7 +35,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "pre-deploy": "npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
